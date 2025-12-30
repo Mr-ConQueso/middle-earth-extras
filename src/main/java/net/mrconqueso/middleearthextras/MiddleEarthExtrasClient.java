@@ -8,6 +8,8 @@ import net.mrconqueso.middleearthextras.entity.ModEntities;
 import net.mrconqueso.middleearthextras.entity.client.ModEntityModelLayers;
 import net.mrconqueso.middleearthextras.entity.client.beorning_bear.BeorningBearRenderer;
 import net.mrconqueso.middleearthextras.entity.client.beorning_human.BeorningHumanRenderer;
+import net.mrconqueso.middleearthextras.entity.client.ent.EntModel;
+import net.mrconqueso.middleearthextras.entity.client.ent.EntRenderer;
 import net.mrconqueso.middleearthextras.entity.client.fellbeast.FellBeastModel;
 import net.mrconqueso.middleearthextras.entity.client.fellbeast.FellBeastRenderer;
 import net.mrconqueso.middleearthextras.entity.client.haradrim.HaradrimHumanRenderer;
@@ -41,5 +43,8 @@ public class MiddleEarthExtrasClient implements ClientModInitializer {
 
         EntityRendererRegistry.register(ModEntities.BEORNING_HUMAN, BeorningHumanRenderer::new);
         EntityRendererRegistry.register(ModEntities.BEORNING_BEAR, BeorningBearRenderer::new);
+
+        EntityModelLayerRegistry.registerModelLayer(EntModel.ENT, EntModel::getTexturedModelData);
+        EntityRendererRegistry.register(ModEntities.ENT, EntRenderer::new);
     }
 }

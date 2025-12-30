@@ -49,16 +49,15 @@ public class ModItems {
     public static final Item BEORNING_SPAWN_EGG = registerItem("beorning_spawn_egg",
             new SpawnEggItem(ModEntities.BEORNING_HUMAN, 0x5c3f2c, 0xfcd6b8, new Item.Settings()));
 
+    public static final Item ENT_SPAWN_EGG = registerItem("ent_spawn_egg",
+            new SpawnEggItem(ModEntities.ENT, 0x564629, 0x95a835, new Item.Settings()));
+
 
     public static final Item OLIPHAUNT_ARMOR = registerItem("oliphaunt_armor",
             new OliphauntArmorItem(ArmorMaterials.IRON, new Item.Settings().maxCount(1)));
 
     public static final Item OAKEN_SHIELD = registerItem("oaken_shield",
             new ShieldItem(new Item.Settings().maxCount(1)));
-
-    public static final Item DALISH_RED_OVAL_SHIELD = registerShield("dalish_red_oval_shield",
-            new CustomShieldItem(ModShieldTypes.MEDIUM_SHIELD, ModFactions.DALE));
-
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(MiddleEarthExtras.MOD_ID, name), item);

@@ -28,6 +28,7 @@ public class ModItemGroups {
                         entries.add(ModItems.OLIPHAUNT_SPAWN_EGG);
                         entries.add(ModItems.HARADRIM_SPAWN_EGG);
                         entries.add(ModItems.BEORNING_SPAWN_EGG);
+                        entries.add(ModItems.ENT_SPAWN_EGG);
 
                         entries.add(ModItems.OLIPHAUNT_ARMOR);
                         entries.add(ModItems.OAKEN_SHIELD);

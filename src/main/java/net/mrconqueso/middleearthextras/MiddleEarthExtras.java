@@ -45,5 +45,6 @@ public class MiddleEarthExtras implements ModInitializer {
         FabricDefaultAttributeRegistry.register(ModEntities.HARADRIM, HaradrimEntity.setKnightAttributes());
         FabricDefaultAttributeRegistry.register(ModEntities.BEORNING_HUMAN, BeorningHumanEntity.createAttributes());
         FabricDefaultAttributeRegistry.register(ModEntities.BEORNING_BEAR, BeorningBearEntity.createAttributes());
+        FabricDefaultAttributeRegistry.register(ModEntities.ENT, EntEntity.setAttributes());
     }
 }

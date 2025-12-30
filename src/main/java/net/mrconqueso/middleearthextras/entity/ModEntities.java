@@ -37,7 +37,7 @@ public class ModEntities {
 
     public static final EntityType<BeorningHumanEntity> BEORNING_HUMAN = Registry.register(Registries.ENTITY_TYPE,
             Identifier.of(MiddleEarthExtras.MOD_ID, "beorning_human"),
-            EntityType.Builder.create(BeorningHumanEntity::new, SpawnGroup.MONSTER)
+            EntityType.Builder.create(BeorningHumanEntity::new, SpawnGroup.CREATURE)
                     .dimensions(0.6F, 1.95F)
                     .eyeHeight(1.74F)
                     .passengerAttachments(2.0125F)
@@ -46,11 +46,18 @@ public class ModEntities {
 
     public static final EntityType<BeorningBearEntity> BEORNING_BEAR = Registry.register(Registries.ENTITY_TYPE,
             Identifier.of(MiddleEarthExtras.MOD_ID, "beorning_bear"),
-            EntityType.Builder.create(BeorningBearEntity::new, SpawnGroup.MONSTER)
+            EntityType.Builder.create(BeorningBearEntity::new, SpawnGroup.CREATURE)
                     .dimensions(0.6F, 1.95F)
                     .eyeHeight(1.74F)
                     .passengerAttachments(2.0125F)
                     .vehicleAttachment(-0.7F)
+                    .maxTrackingRange(8).build());
+
+    public static final EntityType<EntEntity> ENT = Registry.register(Registries.ENTITY_TYPE,
+            Identifier.of(MiddleEarthExtras.MOD_ID, "ent"),
+            EntityType.Builder.create(EntEntity::new, SpawnGroup.CREATURE)
+                    .dimensions(2.25F, 7.5F)
+                    .eyeHeight(5.4F)
                     .maxTrackingRange(8).build());
 
     public static void registerModEntities() {
