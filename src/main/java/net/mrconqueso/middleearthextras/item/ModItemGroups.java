@@ -30,6 +30,7 @@ public class ModItemGroups {
                         entries.add(ModItems.BEORNING_SPAWN_EGG);
 
                         entries.add(ModItems.OLIPHAUNT_ARMOR);
+                        entries.add(ModItems.OAKEN_SHIELD);
                     }).build());
 
     public static final ItemGroup PINK_GARNET_BLOCKS_GROUP = Registry.register(Registries.ITEM_GROUP,
