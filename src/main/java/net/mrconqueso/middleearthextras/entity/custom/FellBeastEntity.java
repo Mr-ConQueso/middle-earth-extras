@@ -55,6 +55,7 @@ public class FellBeastEntity extends AbstractBeastEntity {
 
     public FellBeastEntity(EntityType<? extends FellBeastEntity> entityType, World world) {
         super(entityType, world);
+        this.idleAnimationTimeout = IDLE_LENGTH;
     }
 
     public static DefaultAttributeContainer.Builder setAttributes() {
@@ -146,6 +147,7 @@ public class FellBeastEntity extends AbstractBeastEntity {
 
     @Override
     protected void setupAnimationStates() {
+        super.setupAnimationStates();
         if (this.idleAnimationCooldown <= 0) {
             this.idleAnimationCooldown = IDLE_LENGTH;
             this.idleAnimationState.start(this.age);

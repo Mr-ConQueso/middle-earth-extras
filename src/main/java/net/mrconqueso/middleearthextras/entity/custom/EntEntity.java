@@ -1,7 +1,5 @@
 package net.mrconqueso.middleearthextras.entity.custom;
 
-import net.jukoz.me.entity.beasts.warg.WargEntity;
-import net.jukoz.me.entity.beasts.warg.WargVariant;
 import net.jukoz.me.resources.datas.Disposition;
 import net.jukoz.me.resources.datas.RaceType;
 import net.minecraft.entity.AnimationState;
@@ -15,8 +13,11 @@ import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.mob.PathAwareEntity;
+import net.minecraft.entity.passive.AnimalEntity;
+import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Util;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
@@ -25,7 +26,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class EntEntity extends PathAwareEntity {
+public class EntEntity extends AnimalEntity {
     private static final TrackedData<Integer> VARIANT = DataTracker.registerData(EntEntity.class, TrackedDataHandlerRegistry.INTEGER);
 
     private static final int IDLE_LENGTH = 80;
@@ -94,6 +95,11 @@ public class EntEntity extends PathAwareEntity {
         return super.initialize(world, difficulty, spawnReason, entityData);
     }
 
+    @Override
+    public @Nullable PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
+        return null;
+    }
+
     public EntVariant getVariant() {
         return EntVariant.byId(this.getTypeVariant() & 255);
     }
@@ -104,5 +110,10 @@ public class EntEntity extends PathAwareEntity {
 
     private void setVariant(EntVariant variant) {
         this.dataTracker.set(VARIANT, variant.getId() & 255);
+    }
+
+    @Override
+    public boolean isBreedingItem(ItemStack stack) {
+        return false;
     }
 }
