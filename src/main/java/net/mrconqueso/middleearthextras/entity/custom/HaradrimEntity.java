@@ -17,11 +17,14 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.Items;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -101,5 +104,10 @@ public class HaradrimEntity extends NpcEntity implements RangedAttackMob {
             if (e instanceof OliphantHowdah ) return e;
         }
         return null;
+    }
+
+    public static boolean isValidNaturalSpawn(EntityType<? extends NpcEntity> type, WorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
+        boolean bl = SpawnReason.isTrialSpawner(spawnReason);
+        return world.getBlockState(pos.down()).isIn(BlockTags.ANIMALS_SPAWNABLE_ON) && bl;
     }
 }

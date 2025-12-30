@@ -22,15 +22,19 @@ import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.BlockRenderView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 import net.mrconqueso.middleearthextras.entity.ModEntities;
 import net.mrconqueso.middleearthextras.item.ModItems;
 import org.jetbrains.annotations.Nullable;
@@ -251,5 +255,10 @@ public class FellBeastEntity extends AbstractBeastEntity {
                         yOffset * (double)scaleFactor,
                         zOffset * (double)scaleFactor)
                         .rotateY(-this.getYaw() * ((float)Math.PI / 180)));
+    }
+
+    public static boolean isValidNaturalSpawn(EntityType<? extends AnimalEntity> type, WorldAccess world, SpawnReason spawnReason, BlockPos pos, Random random) {
+//        return world.getBlockState(pos.down()).isIn(BlockTags.ANIMALS_SPAWNABLE_ON) && bl;
+        return true;
     }
 }
