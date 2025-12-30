@@ -1,0 +1,39 @@
+{
+  "item.middle-earth-extras.pink_garnet": "Pink Garnet",
+  "item.middle-earth-extras.raw_pink_garnet": "Raw Pink Garnet",
+  "item.middle-earth-extras.chisel": "Chisel",
+  "item.middle-earth-extras.cauliflower": "Cauliflower",
+  "item.middle-earth-extras.starlight_ashes": "Starlight Ashes",
+
+
+  "block.middle-earth-extras.pink_garnet_block": "Block of Pink Garnet",
+  "block.middle-earth-extras.raw_pink_garnet_block": "Block of Raw Pink Garnet",
+
+  "block.middle-earth-extras.pink_garnet_ore": "Pink Garnet Ore",
+  "block.middle-earth-extras.pink_garnet_deepslate_ore": "Pink Garnet Deepslate Ore",
+
+  "block.middle-earth-extras.magic_block": "Magic Block",
+
+
+  "itemgroup.middle-earth-extras.pink_garnet_items": "Pink Garnet Items",
+  "itemgroup.middle-earth-extras.pink_garnet_blocks": "Pink Garnet Blocks",
+
+  "tooltip.middle-earth-extras.magic_block.tooltip": "This block is very, very §9MAGICAL§r",
+
+  "tooltip.middle-earth-extras.chisel.shift_down": "This item chisels blocks into Bricks!",
+  "tooltip.middle-earth-extras.chisel": "Press §eShift§r for more Information!",
+
+  "tooltip.middle-earth-extras.cauliflower.tooltip": "This is delicious!",
+
+  "entity.middle-earth-extras.fell_beast": "Fell Beast",
+  "item.middle-earth-extras.fell_beast_spawn_egg": "Fell Beast Spawn Egg",
+  "entity.middle-earth-extras.oliphaunt": "Oliphaunt",
+  "item.middle-earth-extras.oliphaunt_spawn_egg": "Oliphaunt Spawn Egg",
+  "entity.middle-earth-extras.haradrim": "Haradrim",
+  "item.middle-earth-extras.haradrim_spawn_egg": "Haradrim Spawn Egg",
+  "entity.middle-earth-extras.beorning_human": "Beorning",
+  "entity.middle-earth-extras.beorning_bear": "Beorning",
+  "item.middle-earth-extras.beorning_spawn_egg": "Beorning Spawn Egg",
+
+  "item.middle-earth-extras.oliphaunt_armor": "Oliphaunt Armor"
+}

@@ -1,0 +1,48 @@
+{
+	"schemaVersion": 1,
+	"id": "middle-earth-extras",
+	"version": "${version}",
+	"name": "Middle Earth Extras",
+	"description": "Simple additions to the Middle Earth Mod project",
+	"authors": [
+		"MrConQueso"
+	],
+	"contact": {
+		"homepage": "https://cheesylabs.net",
+		"sources": "https://github.com/Tutorials-By-Kaupenjoe/Fabric-Tutorial-1.21.X"
+	},
+	"license": "GNU GPLv3",
+	"icon": "assets/middle-earth-extras/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+          "net.mrconqueso.middleearthextras.MiddleEarthExtras"
+		],
+		"fabric-datagen": [
+          "net.mrconqueso.middleearthextras.MiddleEarthExtrasDataGenerator"
+		],
+		"client": [
+          "net.mrconqueso.middleearthextras.MiddleEarthExtrasClient"
+		],
+        "emi": [
+          "net.mrconqueso.middleearthextras.integration.emi.ModEmiPlugin"
+        ]
+	},
+	"mixins": [
+		"middleearthextras.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.21",
+		"java": ">=21",
+		"fabric-api": "*",
+		"me": ">=1.5.3-1.21.1-alpha"
+	},
+	"suggests": {
+		"another-mod": "*"
+	},
+    "recommends": {
+        "modmenu": "*",
+        "emi": "*"
+    }
+}

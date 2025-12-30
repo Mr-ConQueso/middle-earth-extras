@@ -1,0 +1,18 @@
+{
+  "targets": [
+    "swap"
+  ],
+  "passes": [
+    {
+      "name": "wraith",
+      "intarget": "minecraft:main",
+      "outtarget": "swap",
+      "program": "wraith"
+    },
+    {
+      "name": "blit",
+      "intarget": "swap",
+      "outtarget": "minecraft:main"
+    }
+  ]
+}
