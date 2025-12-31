@@ -15,6 +15,7 @@ import net.mrconqueso.middleearthextras.MiddleEarthExtras;
 import net.mrconqueso.middleearthextras.entity.ModEntities;
 import net.mrconqueso.middleearthextras.item.custom.ChiselItem;
 import net.mrconqueso.middleearthextras.item.custom.OliphauntArmorItem;
+import net.mrconqueso.middleearthextras.item.custom.PipeItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +56,9 @@ public class ModItems {
 
     public static final Item OLIPHAUNT_ARMOR = registerItem("oliphaunt_armor",
             new OliphauntArmorItem(ArmorMaterials.IRON, new Item.Settings().maxCount(1)));
+
+    public static final Item MAGIC_PIPE = registerItem("magic_pipe",
+            new PipeItem(new Item.Settings().maxCount(1), 50));
 
     public static final Item OAKEN_SHIELD = registerItem("oaken_shield",
             new ShieldItem(new Item.Settings().maxCount(1)));

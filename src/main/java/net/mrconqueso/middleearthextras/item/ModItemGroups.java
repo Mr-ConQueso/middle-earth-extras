@@ -31,6 +31,7 @@ public class ModItemGroups {
                         entries.add(ModItems.ENT_SPAWN_EGG);
 
                         entries.add(ModItems.OLIPHAUNT_ARMOR);
+                        entries.add(ModItems.MAGIC_PIPE);
                         entries.add(ModItems.OAKEN_SHIELD);
                     }).build());
 

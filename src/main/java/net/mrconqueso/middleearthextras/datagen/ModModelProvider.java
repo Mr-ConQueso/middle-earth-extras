@@ -37,6 +37,7 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.STARLIGHT_ASHES, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.OLIPHAUNT_ARMOR, Models.GENERATED);
+        itemModelGenerator.register(ModItems.MAGIC_PIPE, Models.GENERATED);
 
         itemModelGenerator.register(ModItems.FELL_BEAST_SPAWN_EGG,
                 new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));

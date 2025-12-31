@@ -7,6 +7,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.mrconqueso.middleearthextras.MiddleEarthExtras;
 import net.mrconqueso.middleearthextras.entity.custom.*;
+import net.mrconqueso.middleearthextras.entity.projectile.smoke.SmokeBoatProjectileEntity;
 
 public class ModEntities {
 
@@ -59,6 +60,13 @@ public class ModEntities {
                     .dimensions(2.25F, 7.5F)
                     .eyeHeight(5.4F)
                     .maxTrackingRange(8).build());
+
+    public static final EntityType<SmokeBoatProjectileEntity> SMOKE_BOAT_PROJECTILE = Registry.register(Registries.ENTITY_TYPE,
+            Identifier.of(MiddleEarthExtras.MOD_ID, "smoke_boat_projectile"),
+            EntityType.Builder.<SmokeBoatProjectileEntity>create(SmokeBoatProjectileEntity::new, SpawnGroup.MISC)
+                    .dimensions(0.5F, 0.5F)
+                    .eyeHeight(0.5F)
+                    .maxTrackingRange(1).build());
 
     public static void registerModEntities() {
         MiddleEarthExtras.LOGGER.info("Registering Mod Entities for " + MiddleEarthExtras.MOD_ID);
