@@ -1,9 +1,11 @@
 package net.mrconqueso.middleearthextras;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
+import net.mrconqueso.middleearthextras.client.ClientStructureProtection;
 import net.mrconqueso.middleearthextras.entity.ModEntities;
 import net.mrconqueso.middleearthextras.entity.client.ModEntityModelLayers;
 import net.mrconqueso.middleearthextras.entity.client.beorning_bear.BeorningBearRenderer;
@@ -15,6 +17,9 @@ import net.mrconqueso.middleearthextras.entity.client.fellbeast.FellBeastRendere
 import net.mrconqueso.middleearthextras.entity.client.haradrim.HaradrimHumanRenderer;
 import net.mrconqueso.middleearthextras.entity.client.oliphaunt.OliphauntModel;
 import net.mrconqueso.middleearthextras.entity.client.oliphaunt.OliphauntRenderer;
+import net.mrconqueso.middleearthextras.entity.projectile.smoke.SmokeBoatProjectileModel;
+import net.mrconqueso.middleearthextras.entity.projectile.smoke.SmokeBoatProjectileRenderer;
+import net.mrconqueso.middleearthextras.network.StructureProtectionSyncPayload;
 import net.mrconqueso.middleearthextras.screen.ModScreenHandlers;
 import net.mrconqueso.middleearthextras.screen.custom.OliphauntScreen;
 
@@ -24,6 +29,17 @@ public class MiddleEarthExtrasClient implements ClientModInitializer {
         initializeEntityModels();
         initializeScreens();
         ModEntityModelLayers.registerModEntityModelLayers();
+
+        ClientPlayNetworking.registerGlobalReceiver(StructureProtectionSyncPayload.ID, (payload, context) -> {
+            context.client().execute(() -> {
+                ClientStructureProtection.update(
+                        payload.inProtectedStructure(),
+                        payload.playerPlacedBlocks(),
+                        payload.protectedBlocksTag(),
+                        payload.breakableBlocksTag()
+                );
+            });
+        });
     }
 
     private void initializeScreens() {
@@ -46,5 +62,8 @@ public class MiddleEarthExtrasClient implements ClientModInitializer {
 
         EntityModelLayerRegistry.registerModelLayer(EntModel.ENT, EntModel::getTexturedModelData);
         EntityRendererRegistry.register(ModEntities.ENT, EntRenderer::new);
+
+        EntityModelLayerRegistry.registerModelLayer(SmokeBoatProjectileModel.SMOKE_BOAT, SmokeBoatProjectileModel::getTexturedModelData);
+        EntityRendererRegistry.register(ModEntities.SMOKE_BOAT_PROJECTILE, SmokeBoatProjectileRenderer::new);
     }
 }

@@ -3,7 +3,10 @@
 	"package": "net.mrconqueso.middleearthextras.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-	],
+      "BlockItemMixin",
+      "ExplosionMixin",
+      "PlayerEntityMixin"
+    ],
 	"injectors": {
 		"defaultRequire": 1
 	}
