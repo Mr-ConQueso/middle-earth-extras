@@ -2,9 +2,6 @@ package net.mrconqueso.middleearthextras;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import net.jukoz.me.resources.MiddleEarthFactions;
-import net.jukoz.me.resources.MiddleEarthNpcs;
-import net.jukoz.me.resources.MiddleEarthRaces;
 import net.minecraft.registry.RegistryBuilder;
 import net.mrconqueso.middleearthextras.datagen.*;
 import net.mrconqueso.middleearthextras.resources.ModFactions;
@@ -21,14 +18,16 @@ public class MiddleEarthExtrasDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(ModLootTableProvider::new);
 		pack.addProvider(ModModelProvider::new);
 		pack.addProvider(ModRecipeProvider::new);
+
+		pack.addProvider(ModDynamicRegistryProvider::new);
 	}
 
 	@Override
 	public void buildRegistry(RegistryBuilder registryBuilder) {
 		DataGeneratorEntrypoint.super.buildRegistry(registryBuilder);
 
-		registryBuilder.addRegistry(MiddleEarthFactions.FACTION_KEY, ModFactions::bootstrap);
-		registryBuilder.addRegistry(MiddleEarthNpcs.NPC_KEY, ModNpcs::bootstrap);
-		registryBuilder.addRegistry(MiddleEarthRaces.RACE_KEY, ModRaces::bootstrap);
+		registryBuilder.addRegistry(ModFactions.MOD_FACTION_KEY, ModFactions::bootstrap);
+		registryBuilder.addRegistry(ModNpcs.MOD_NPC_KEY, ModNpcs::bootstrap);
+		registryBuilder.addRegistry(ModRaces.MOD_RACE_KEY, ModRaces::bootstrap);
 	}
 }

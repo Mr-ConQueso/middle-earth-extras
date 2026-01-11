@@ -1,6 +1,5 @@
 package net.mrconqueso.middleearthextras.resources.datas.npcs.pools;
 
-import net.jukoz.me.MiddleEarth;
 import net.jukoz.me.item.utils.armor.capes.ModCapes;
 import net.jukoz.me.resources.MiddleEarthRaces;
 import net.jukoz.me.resources.datas.npcs.NpcData;
@@ -10,6 +9,7 @@ import net.jukoz.me.resources.datas.npcs.data.NpcGearSlotData;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
+import net.mrconqueso.middleearthextras.MiddleEarthExtras;
 import net.mrconqueso.middleearthextras.item.ModEquipmentItems;
 import net.mrconqueso.middleearthextras.item.ModWeaponItems;
 
@@ -39,7 +39,7 @@ public class HaradrimNpcDataPool {
     static {
         allColors = List.of(DARK, DARK_BROWN);
 
-        HARADRIM_SOLDIER = new NpcData(Identifier.of(MiddleEarth.MOD_ID, FACTION_BASE + "soldier"), MiddleEarthRaces.HUMAN, List.of(
+        HARADRIM_SOLDIER = new NpcData(Identifier.of(MiddleEarthExtras.MOD_ID, FACTION_BASE + "soldier"), MiddleEarthRaces.HUMAN, List.of(
                 NpcGearData.create()
                         .add(EquipmentSlot.HEAD, NpcGearSlotData.create()
                                 .add(NpcGearItemData.create(ModEquipmentItems.HARADRIM_HELMET))
@@ -62,7 +62,7 @@ public class HaradrimNpcDataPool {
                         )
         ));
 
-        HARADRIM_SCOUT = new NpcData(Identifier.of(MiddleEarth.MOD_ID, FACTION_BASE + "scout"), MiddleEarthRaces.HUMAN, List.of(
+        HARADRIM_SCOUT = new NpcData(Identifier.of(MiddleEarthExtras.MOD_ID, FACTION_BASE + "scout"), MiddleEarthRaces.HUMAN, List.of(
                 NpcGearData.create()
                         .add(EquipmentSlot.HEAD, NpcGearSlotData.create()
                                 .add(NpcGearItemData.create(ModEquipmentItems.HARADRIM_HELMET))
@@ -85,7 +85,7 @@ public class HaradrimNpcDataPool {
                         )
         ));
 
-        HARADRIM_VETERAN = new NpcData(Identifier.of(MiddleEarth.MOD_ID, FACTION_BASE + "veteran"), MiddleEarthRaces.HUMAN, List.of(
+        HARADRIM_VETERAN = new NpcData(Identifier.of(MiddleEarthExtras.MOD_ID, FACTION_BASE + "veteran"), MiddleEarthRaces.HUMAN, List.of(
                 NpcGearData.create()
                         .add(EquipmentSlot.HEAD, NpcGearSlotData.create()
                                 .add(NpcGearItemData.create(ModEquipmentItems.HARADRIM_HELMET))
@@ -109,7 +109,7 @@ public class HaradrimNpcDataPool {
         ));
 
 
-        HARADRIM_BERSERKER = new NpcData(Identifier.of(MiddleEarth.MOD_ID, FACTION_BASE + "berserker"), MiddleEarthRaces.HUMAN, List.of(
+        HARADRIM_BERSERKER = new NpcData(Identifier.of(MiddleEarthExtras.MOD_ID, FACTION_BASE + "berserker"), MiddleEarthRaces.HUMAN, List.of(
                 NpcGearData.create()
                         .add(EquipmentSlot.HEAD, NpcGearSlotData.create()
                                 .add(NpcGearItemData.create(ModEquipmentItems.HARADRIM_HELMET))
@@ -132,7 +132,7 @@ public class HaradrimNpcDataPool {
                         )
         ));
 
-        HARADRIM_LEADER = new NpcData(Identifier.of(MiddleEarth.MOD_ID, FACTION_BASE + "leader"), MiddleEarthRaces.HUMAN, List.of(
+        HARADRIM_LEADER = new NpcData(Identifier.of(MiddleEarthExtras.MOD_ID, FACTION_BASE + "leader"), MiddleEarthRaces.HUMAN, List.of(
                 NpcGearData.create()
                         .add(EquipmentSlot.HEAD, NpcGearSlotData.create()
                                 .add(NpcGearItemData.create(ModEquipmentItems.HARADRIM_HELMET))

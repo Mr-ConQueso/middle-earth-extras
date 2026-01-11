@@ -49,6 +49,12 @@ fabricApi {
 	configureDataGeneration()
 }
 
+tasks.named("runDatagen") {
+    doFirst {
+        delete file("src/main/generated/.cache")
+    }
+}
+
 dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"

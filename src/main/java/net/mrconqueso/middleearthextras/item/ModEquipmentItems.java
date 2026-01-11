@@ -49,18 +49,6 @@ public class ModEquipmentItems {
         return (Item) Registry.register(Registries.ITEM, Identifier.of(MiddleEarthExtras.MOD_ID, name), item);
     }
 
-    private static Item registerCustomModelArmorPiece(String name, Item item) {
-        ModItemGroups.EQUIPMENT_CONTENTS.add(item.getDefaultStack());
-        SimpleItemModel.items.add(item);
-        return (Item)Registry.register(Registries.ITEM, Identifier.of(MiddleEarthExtras.MOD_ID, name), item);
-    }
-
-    private static Item registerDyeableCustomModelArmorPiece(String name, Item item) {
-        ModItemGroups.EQUIPMENT_CONTENTS.add(item.getDefaultStack());
-        SimpleDyeableItemModel.items.add(item);
-        return (Item)Registry.register(Registries.ITEM, Identifier.of(MiddleEarthExtras.MOD_ID, name), item);
-    }
-
     private static Item registerItem(String name, Item item) {
         ModItemGroups.EQUIPMENT_CONTENTS.add(item.getDefaultStack());
         SimpleItemModel.items.add(item);

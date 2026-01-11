@@ -26,6 +26,7 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
+import net.mrconqueso.middleearthextras.MiddleEarthExtras;
 import net.mrconqueso.middleearthextras.effect.ModEffects;
 import org.jetbrains.annotations.Nullable;
 
@@ -42,7 +43,7 @@ public class RingWraithEntity extends NpcEntity implements IWraithEntity {
 
     private static final float GENERIC_FOLLOW_DISTANCE = 32.0f;
 
-    private static final NpcData HARADRIM_SOLDIER = new NpcData(Identifier.of(MiddleEarth.MOD_ID, "nazgul"), MiddleEarthRaces.HUMAN, List.of(
+    private static final NpcData HARADRIM_SOLDIER = new NpcData(Identifier.of(MiddleEarthExtras.MOD_ID, "nazgul"), MiddleEarthRaces.HUMAN, List.of(
             NpcGearData.create()
             .add(EquipmentSlot.HEAD, NpcGearSlotData.create()
                 .add(NpcGearItemData.create(ModEquipmentItems.NAZGUL_HOOD))

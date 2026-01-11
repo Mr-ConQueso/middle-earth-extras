@@ -309,20 +309,20 @@ public class OliphauntEntity extends AbstractBeastEntity implements InventoryCha
 
     @Override
     public void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater) {
-        if (this.getWorld().isClient) {
-            var client = net.minecraft.client.MinecraftClient.getInstance();
-            var renderer = client.getEntityRenderDispatcher().getRenderer(this);
-
-            if (renderer instanceof OliphauntRenderer oliphauntRenderer) {
-                var model = oliphauntRenderer.getModel();
-                Vec3d seatPos = model.getSeatPosition(this, 1.0f);
-                positionUpdater.accept(passenger, seatPos.x, seatPos.y, seatPos.z);
-                return;
-            }
-        }
-        super.updatePassengerPosition(passenger, positionUpdater);
+//        if (this.getWorld().isClient) {
+//            var client = net.minecraft.client.MinecraftClient.getInstance();
+//            var renderer = client.getEntityRenderDispatcher().getRenderer(this);
+//
+//            if (renderer instanceof OliphauntRenderer oliphauntRenderer) {
+//                var model = oliphauntRenderer.getModel();
+//                Vec3d seatPos = model.getSeatPosition(this, 1.0f);
+//                positionUpdater.accept(passenger, seatPos.x, seatPos.y, seatPos.z);
+//                return;
+//            }
+//        }
+//        super.updatePassengerPosition(passenger, positionUpdater);
         // Or if you know the Mûmakil is tall:
-        // positionUpdater.accept(passenger, this.getX(), this.getY() + 12.0, this.getZ());
+        positionUpdater.accept(passenger, this.getX(), this.getY() + 12.0, this.getZ());
     }
 
     private void movePart(OliphantHowdah part, double dx, double dy, double dz) {
@@ -347,38 +347,25 @@ public class OliphauntEntity extends AbstractBeastEntity implements InventoryCha
         if (eventId.equals("stomp")) {
             // 1. Play Sound
             this.playSound(SoundEvents.ENTITY_RAVAGER_STEP, 1.0f, 1.0f);
+            // Server-side: Send shake packets to all nearby players
+            float maxRadius = 32.0f;
+            float maxIntensity = 1.0f;
+            int duration = 40;
 
-            if (this.getWorld().isClient) {
-                // Client-side visual shake for the player riding or rendering nearby (optional, if packet latency is an issue)
-                var client = net.minecraft.client.MinecraftClient.getInstance();
-                if (client.player != null) {
-                    float dist = (float) this.distanceTo(client.player);
-                    if (dist < 32) {
-                        float intensity = MathHelper.lerp(dist / 32.0f, 1.0f, 0.0f);
-                        ScreenshakeManager.startShake(intensity, 10);
-                    }
-                }
-            } else {
-                // Server-side: Send shake packets to all nearby players
-                float maxRadius = 32.0f;
-                float maxIntensity = 1.0f;
-                int duration = 40;
+            // Get all players within the radius
+            List<ServerPlayerEntity> nearbyPlayers = this.getWorld().getEntitiesByClass(
+                    ServerPlayerEntity.class,
+                    this.getBoundingBox().expand(maxRadius),
+                    player -> this.distanceTo(player) <= maxRadius
+            );
 
-                // Get all players within the radius
-                List<ServerPlayerEntity> nearbyPlayers = this.getWorld().getEntitiesByClass(
-                        ServerPlayerEntity.class,
-                        this.getBoundingBox().expand(maxRadius),
-                        player -> this.distanceTo(player) <= maxRadius
-                );
+            for (ServerPlayerEntity player : nearbyPlayers) {
+                float distance = this.distanceTo(player);
+                // Linear falloff: 1.0 at 0 distance, 0.0 at maxRadius
+                float intensity = MathHelper.lerp(distance / maxRadius, maxIntensity, 0.0f);
 
-                for (ServerPlayerEntity player : nearbyPlayers) {
-                    float distance = this.distanceTo(player);
-                    // Linear falloff: 1.0 at 0 distance, 0.0 at maxRadius
-                    float intensity = MathHelper.lerp(distance / maxRadius, maxIntensity, 0.0f);
-
-                    if (intensity > 0) {
-                        ServerPlayNetworking.send(player, new ScreenshakePayload(intensity, duration));
-                    }
+                if (intensity > 0) {
+                    ServerPlayNetworking.send(player, new ScreenshakePayload(intensity, duration));
                 }
             }
         }

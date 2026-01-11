@@ -11,9 +11,12 @@ import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.mrconqueso.middleearthextras.MiddleEarthExtras;
 
-import static net.jukoz.me.item.ModWeaponItems.shields;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ModWeaponItems {
+
+    public static List<Item> modShields = new ArrayList();
 
     public static final Item OAKEN_SHIELD = registerShield("oaken_shield",
             new ShieldItem(new Item.Settings().maxCount(1)));
@@ -23,7 +26,7 @@ public class ModWeaponItems {
 
     private static Item registerShield(String name, Item item) {
         ModItemGroups.WEAPONS_CONTENTS.add(item.getDefaultStack());
-        shields.add(item);
+        modShields.add(item);
         return (Item) Registry.register(Registries.ITEM, Identifier.of(MiddleEarthExtras.MOD_ID, name), item);
     }
 

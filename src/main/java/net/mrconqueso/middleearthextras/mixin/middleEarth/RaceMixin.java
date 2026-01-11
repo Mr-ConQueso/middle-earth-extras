@@ -6,6 +6,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
+import net.mrconqueso.middleearthextras.MiddleEarthExtras;
 import net.mrconqueso.middleearthextras.entity.ModEntities;
 import net.mrconqueso.middleearthextras.entity.custom.BeorningHumanEntity;
 import net.mrconqueso.middleearthextras.entity.custom.EntEntity;
@@ -28,9 +29,9 @@ public class RaceMixin {
     @Inject(method = "getModel", at = @At("HEAD"), cancellable = true, remap = false)
     public void getCustomModel(World world, CallbackInfoReturnable<LivingEntity> cir) {
         MobEntity entity = null;
-        if (this.id.equals(Identifier.of(MiddleEarth.MOD_ID, "beorning"))) {
+        if (this.id.equals(Identifier.of(MiddleEarthExtras.MOD_ID, "beorning"))) {
             entity = new BeorningHumanEntity(ModEntities.BEORNING_HUMAN, world);
-        } else if (this.id.equals(Identifier.of(MiddleEarth.MOD_ID, "ent"))) {
+        } else if (this.id.equals(Identifier.of(MiddleEarthExtras.MOD_ID, "ent"))) {
             entity = new EntEntity(ModEntities.ENT, world);
         }
 

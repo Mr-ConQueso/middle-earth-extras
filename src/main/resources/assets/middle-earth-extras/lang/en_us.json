@@ -78,14 +78,14 @@
 
 
   "---------------------- RACES & FACTIONS ----------------------": "-------------------------",
-  "race.me.beorning": "Beorning",
-  "faction.me.beornings": "Beornings",
-  "spawn.me.mirkwood.carrock": "The Carrock",
+  "race.middle-earth-extras.beorning": "Beorning",
+  "faction.middle-earth-extras.beornings": "Beornings",
+  "spawn.middle-earth-extras.mirkwood.carrock": "The Carrock",
 
-  "race.me.ent": "Ent",
+  "race.middle-earth-extras.ent": "Ent",
 
-  "faction.me.haradrim": "Haradrim",
-  "spawn.me.harondor.umbar": "Umbar",
+  "faction.middle-earth-extras.haradrim": "Haradrim",
+  "spawn.middle-earth-extras.harondor.umbar": "Umbar",
 
 
   "---------------------- MISC ----------------------": "-------------------------",
