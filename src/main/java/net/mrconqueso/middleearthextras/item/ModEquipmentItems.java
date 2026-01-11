@@ -1,6 +1,5 @@
 package net.mrconqueso.middleearthextras.item;
 
-import net.jukoz.me.datageneration.content.models.SimpleDyeableItemModel;
 import net.jukoz.me.item.items.armor.CustomBootsItem;
 import net.jukoz.me.item.items.armor.CustomChestplateItem;
 import net.jukoz.me.item.items.armor.CustomHelmetItem;
@@ -17,9 +16,19 @@ import net.mrconqueso.middleearthextras.MiddleEarthExtras;
 import net.mrconqueso.middleearthextras.datagen.content.models.SimpleItemModel;
 import net.mrconqueso.middleearthextras.item.items.OliphauntArmorItem;
 
-import static net.jukoz.me.item.ModEquipmentItems.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ModEquipmentItems {
+
+    public static List<Item> modArmorPiecesListHelmets = new ArrayList<>();
+    public static List<Item> modArmorPiecesListChestplates = new ArrayList<>();
+    public static List<Item> modArmorPiecesListLeggings = new ArrayList<>();
+    public static List<Item> modArmorPiecesListBoots = new ArrayList<>();
+
+    public static List<Item> modCapes = new ArrayList<>();
+    public static List<Item> modHoods = new ArrayList<>();
+
 
     public static final Item HARADRIM_HELMET = registerArmorPiece("haradrim_helmet", new CustomHelmetItem(ModArmorMaterials.BRONZE_T1, new Item.Settings(), ModFactions.MORDOR));
     public static final Item HARADRIM_LEGGINGS = registerArmorPiece("haradrim_leggings", new CustomLeggingsItem(ModArmorMaterials.BRONZE_T1, new Item.Settings(), ModFactions.MORDOR));
@@ -39,10 +48,10 @@ public class ModEquipmentItems {
         ModItemGroups.EQUIPMENT_CONTENTS.add(item.getDefaultStack());
         SimpleItemModel.items.add(item);
         switch (item) {
-            case CustomHelmetItem helmetItem -> armorPiecesListHelmets.add(helmetItem);
-            case CustomChestplateItem chestplateItem -> armorPiecesListChestplates.add(chestplateItem);
-            case CustomLeggingsItem leggingsItem -> armorPiecesListLeggings.add(leggingsItem);
-            case CustomBootsItem bootsItem -> armorPiecesListBoots.add(bootsItem);
+            case CustomHelmetItem helmetItem -> modArmorPiecesListHelmets.add(helmetItem);
+            case CustomChestplateItem chestplateItem -> modArmorPiecesListChestplates.add(chestplateItem);
+            case CustomLeggingsItem leggingsItem -> modArmorPiecesListLeggings.add(leggingsItem);
+            case CustomBootsItem bootsItem -> modArmorPiecesListBoots.add(bootsItem);
             default -> throw new IllegalStateException("Unexpected value: " + String.valueOf(item));
         }
 

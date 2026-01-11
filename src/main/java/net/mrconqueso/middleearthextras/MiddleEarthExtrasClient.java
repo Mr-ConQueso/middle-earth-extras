@@ -4,14 +4,20 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
+import net.fabricmc.fabric.api.client.rendering.v1.CoreShaderRegistrationCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.VertexFormats;
+import net.minecraft.util.Identifier;
 import net.mrconqueso.middleearthextras.block.ModBlocks;
 import net.mrconqueso.middleearthextras.client.ClientStructureProtection;
 import net.mrconqueso.middleearthextras.client.ScreenshakeManager;
 import net.mrconqueso.middleearthextras.client.WraithShaderHandler;
+import net.mrconqueso.middleearthextras.client.armor.renderer.*;
+import net.mrconqueso.middleearthextras.client.render.ModInternalShaders;
 import net.mrconqueso.middleearthextras.compat.Mods;
 import net.mrconqueso.middleearthextras.compat.accesories.Accesories;
 import net.mrconqueso.middleearthextras.compat.lambdynlights_api.LambDynLights;
@@ -30,6 +36,7 @@ import net.mrconqueso.middleearthextras.entity.client.oliphaunt.OliphauntRendere
 import net.mrconqueso.middleearthextras.entity.client.ringwraith.RingWraithHumanRenderer;
 import net.mrconqueso.middleearthextras.entity.projectile.smoke.SmokeBoatProjectileModel;
 import net.mrconqueso.middleearthextras.entity.projectile.smoke.SmokeBoatProjectileRenderer;
+import net.mrconqueso.middleearthextras.item.ModEquipmentItems;
 import net.mrconqueso.middleearthextras.item.utils.ModModelPredicateProvider;
 import net.mrconqueso.middleearthextras.keybind.ModKeyBinds;
 import net.mrconqueso.middleearthextras.network.ScreenshakePayload;
@@ -44,6 +51,8 @@ public class MiddleEarthExtrasClient implements ClientModInitializer {
         initScreens();
         initBlockRenderers();
 
+        initArmors();
+
         ModEntityModelLayers.registerModEntityModelLayers();
         ModModelPredicateProvider.registerAllPredicates();
 
@@ -54,6 +63,40 @@ public class MiddleEarthExtrasClient implements ClientModInitializer {
         initNetworking();
 
         WraithShaderHandler.register();
+        initShaders();
+    }
+
+    private static void initArmors() {
+
+        ModEquipmentItems.modArmorPiecesListHelmets.forEach(armor -> {
+            ArmorRenderer.register(new ModHelmetArmorRenderer(), armor.asItem());
+        });
+        ModEquipmentItems.modArmorPiecesListChestplates.forEach(armor -> {
+            ArmorRenderer.register(new ModChestplateArmorRenderer(), armor.asItem());
+        });
+        ModEquipmentItems.modArmorPiecesListLeggings.forEach(armor -> {
+            ArmorRenderer.register(new ModLeggingsArmorRenderer(), armor.asItem());
+        });
+        ModEquipmentItems.modArmorPiecesListBoots.forEach(armor -> {
+            ArmorRenderer.register(new ModBootsArmorRenderer(), armor.asItem());
+        });
+
+        ModEquipmentItems.modHoods.forEach(hood -> {
+            ArmorRenderer.register(new ModHoodRenderer(), hood);
+        });
+        ModEquipmentItems.modCapes.forEach(cape -> {
+            ArmorRenderer.register(new ModCapeRenderer(), cape);
+        });
+    }
+
+    private static void initShaders() {
+        CoreShaderRegistrationCallback.EVENT.register(context -> {
+            context.register(
+                    Identifier.of(MiddleEarthExtras.MOD_ID, "wraith_sway"),
+                    VertexFormats.POSITION_COLOR_TEXTURE_OVERLAY_LIGHT_NORMAL,
+                    program -> ModInternalShaders.setRenderTypeWraithSwayShader(program)
+            );
+        });
     }
 
     private static void initBlockRenderers() {
