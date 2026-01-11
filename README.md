@@ -1,6 +1,4 @@
----
-
-<h2><img src="./.idea/icon.png" width="18"> Middle-earth: Extras Addon.</h2>
+<h2><img src="https://github.com/Mr-ConQueso/middle-earth-extras/blob/main/src/main/resources/assets/middle-earth-extras/icon.png" width="18"> Middle-earth: Extras Addon.</h2>
 <p>An unofficial expansion for the Middle-earth mod, bringing the most ambitious creatures and mechanics from Tolkien's lore into Minecraft.</p>
 <p>We aim to add the missing beasts, new factions, complex mechanics and large structures and dungeons.</p>
 
