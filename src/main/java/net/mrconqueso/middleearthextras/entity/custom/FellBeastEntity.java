@@ -21,8 +21,8 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
-import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
@@ -32,11 +32,10 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.BlockRenderView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.mrconqueso.middleearthextras.entity.ModEntities;
-import net.mrconqueso.middleearthextras.item.ModItems;
+import net.mrconqueso.middleearthextras.item.ModGeneralItems;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -167,7 +166,7 @@ public class FellBeastEntity extends AbstractBeastEntity {
 
     @Override
     public boolean isBreedingItem(ItemStack stack) {
-        return stack.isOf(ModItems.CAULIFLOWER);
+        return stack.isOf(Items.ROTTEN_FLESH);
     }
 
     @Override

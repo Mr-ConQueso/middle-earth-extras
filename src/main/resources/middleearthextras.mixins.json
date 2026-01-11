@@ -2,12 +2,30 @@
 	"required": true,
 	"package": "net.mrconqueso.middleearthextras.mixin",
 	"compatibilityLevel": "JAVA_21",
-	"mixins": [
+    "mixins": [
+      "BiomeStatsMixin",
       "BlockItemMixin",
       "ExplosionMixin",
-      "PlayerEntityMixin"
+      "LivingEntityMixin",
+      "PlayerEntityMixin",
+      "middleEarth.BarrowWightEntityMixin",
+      "middleEarth.PetrifiedTrollEntityMixin",
+      "middleEarth.RaceMixin"
     ],
-	"injectors": {
-		"defaultRequire": 1
-	}
+    "client": [
+      "client.GameRendererAccessor",
+      "client.ItemRendererMixin",
+      "client.PlayerEntityRendererMixin",
+      "client.EntityRenderDispatcherMixin",
+      "client.lightmap.MixinEndEffects",
+      "client.lightmap.MixinGameRenderer",
+      "client.lightmap.MixinLightTexture",
+      "client.lightmap.MixinNetherEffects",
+      "client.middleEarth.PetrifiedTrollRendererMixin",
+      "client.screenshake.CameraAccessor",
+      "client.screenshake.CameraMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
 }

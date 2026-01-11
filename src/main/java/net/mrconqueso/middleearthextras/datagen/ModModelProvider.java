@@ -2,15 +2,19 @@ package net.mrconqueso.middleearthextras.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
-import net.minecraft.data.client.BlockStateModelGenerator;
-import net.minecraft.data.client.ItemModelGenerator;
-import net.minecraft.data.client.Model;
-import net.minecraft.data.client.Models;
+import net.jukoz.me.datageneration.content.CustomItemModels;
+import net.minecraft.data.client.*;
+import net.minecraft.item.Item;
+import net.minecraft.registry.Registries;
+import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Direction;
+import net.mrconqueso.middleearthextras.MiddleEarthExtras;
 import net.mrconqueso.middleearthextras.block.ModBlocks;
-import net.mrconqueso.middleearthextras.item.ModItems;
-
-import java.util.Optional;
+import net.mrconqueso.middleearthextras.datagen.content.models.SimpleItemModel;
+import net.mrconqueso.middleearthextras.datagen.content.models.SimpleRingModel;
+import net.mrconqueso.middleearthextras.datagen.content.models.SimpleSpawnEggModel;
+import net.mrconqueso.middleearthextras.item.ModGeneralItems;
 
 public class ModModelProvider extends FabricModelProvider {
     public ModModelProvider(FabricDataOutput output) {
@@ -19,35 +23,66 @@ public class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PINK_GARNET_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.RAW_PINK_GARNET_BLOCK);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PINK_GARNET_ORE);
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.PINK_GARNET_DEEPSLATE_ORE);
 
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.MAGIC_BLOCK);
+        generateTorch(blockStateModelGenerator);
     }
 
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
-        itemModelGenerator.register(ModItems.PINK_GARNET, Models.GENERATED);
-        itemModelGenerator.register(ModItems.RAW_PINK_GARNET, Models.GENERATED);
 
-        itemModelGenerator.register(ModItems.CAULIFLOWER, Models.GENERATED);
-        itemModelGenerator.register(ModItems.CHISEL, Models.GENERATED);
-        itemModelGenerator.register(ModItems.STARLIGHT_ASHES, Models.GENERATED);
+        itemModelGenerator.register(ModGeneralItems.MAGIC_PIPE, "_inventory", Models.HANDHELD);
 
-        itemModelGenerator.register(ModItems.OLIPHAUNT_ARMOR, Models.GENERATED);
-        itemModelGenerator.register(ModItems.MAGIC_PIPE, Models.GENERATED);
+        for (Item item : SimpleItemModel.items) {
+            if (Registries.ITEM.getId(item).equals(Registries.ITEM.getDefaultId())) {
+                MiddleEarthExtras.LOGGER.warn("Skipping model generation for unregistered simple item: " + item);
+                continue;
+            }
+            itemModelGenerator.register(item, Models.GENERATED);
+        }
 
-        itemModelGenerator.register(ModItems.FELL_BEAST_SPAWN_EGG,
-                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
-        itemModelGenerator.register(ModItems.OLIPHAUNT_SPAWN_EGG,
-                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
-        itemModelGenerator.register(ModItems.HARADRIM_SPAWN_EGG,
-                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
-        itemModelGenerator.register(ModItems.BEORNING_SPAWN_EGG,
-                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
-        itemModelGenerator.register(ModItems.ENT_SPAWN_EGG,
-                new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        for (Item item : SimpleRingModel.items) {
+            if (Registries.ITEM.getId(item).equals(Registries.ITEM.getDefaultId())) {
+                MiddleEarthExtras.LOGGER.warn("Skipping model generation for unregistered ring item: " + item);
+                continue;
+            }
+            registerRingModel(itemModelGenerator, item);
+        }
+
+        for (Item item : SimpleSpawnEggModel.items) {
+            if (Registries.ITEM.getId(item).equals(Registries.ITEM.getDefaultId())) {
+                MiddleEarthExtras.LOGGER.warn("Skipping model generation for unregistered egg item: " + item);
+                continue;
+            }
+            itemModelGenerator.register(item, CustomItemModels.TEMPLATE_SPAWN_EGG);
+        }
+    }
+
+    private void registerRingModel(ItemModelGenerator itemModelGenerator, Item ring) {
+        Identifier id = Registries.ITEM.getId(ring);
+        Models.GENERATED.upload(ModelIds.getItemModelId(ring),
+                TextureMap.layer0(Identifier.of(MiddleEarthExtras.MOD_ID,
+                        "item/rings/ring_" + id.getPath())),
+                itemModelGenerator.writer);
+    }
+
+    private void generateTorch(BlockStateModelGenerator blockStateModelGenerator) {
+        Identifier vanillaTorchModel = Identifier.ofVanilla("block/torch");
+        Identifier vanillaWallTorchModel = Identifier.ofVanilla("block/wall_torch");
+
+        blockStateModelGenerator.blockStateCollector.accept(
+                VariantsBlockStateSupplier.create(ModBlocks.WALL_DAMP_TORCH)
+                        .coordinate(BlockStateVariantMap.create(Properties.HORIZONTAL_FACING)
+                                        .register(Direction.NORTH, BlockStateVariant.create().put(VariantSettings.MODEL, vanillaWallTorchModel).put(VariantSettings.Y, VariantSettings.Rotation.R270))
+                                        .register(Direction.EAST, BlockStateVariant.create().put(VariantSettings.MODEL, vanillaWallTorchModel).put(VariantSettings.Y, VariantSettings.Rotation.R0))
+                                        .register(Direction.SOUTH, BlockStateVariant.create().put(VariantSettings.MODEL, vanillaWallTorchModel).put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                                        .register(Direction.WEST, BlockStateVariant.create().put(VariantSettings.MODEL, vanillaWallTorchModel).put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                        )
+        );
+
+        blockStateModelGenerator.blockStateCollector.accept(
+                VariantsBlockStateSupplier.create(ModBlocks.DAMP_TORCH, BlockStateVariant.create().put(VariantSettings.MODEL, vanillaTorchModel))
+        );
+
+        blockStateModelGenerator.registerParentedItemModel(ModBlocks.DAMP_TORCH, Identifier.ofVanilla("item/torch"));
     }
 }

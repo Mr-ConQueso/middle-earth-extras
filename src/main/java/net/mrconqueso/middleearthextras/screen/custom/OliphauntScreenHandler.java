@@ -11,7 +11,7 @@ import net.minecraft.item.Items;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.mrconqueso.middleearthextras.entity.custom.OliphauntEntity;
-import net.mrconqueso.middleearthextras.item.custom.OliphauntArmorItem;
+import net.mrconqueso.middleearthextras.item.items.OliphauntArmorItem;
 import net.mrconqueso.middleearthextras.screen.ModScreenHandlers;
 
 import java.util.List;

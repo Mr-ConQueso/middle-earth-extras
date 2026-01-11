@@ -3,7 +3,7 @@ package net.mrconqueso.middleearthextras.datagen;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.mrconqueso.middleearthextras.block.ModBlocks;
-import net.mrconqueso.middleearthextras.item.ModItems;
+import net.mrconqueso.middleearthextras.item.ModGeneralItems;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
@@ -26,12 +26,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 
     @Override
     public void generate() {
-        addDrop(ModBlocks.PINK_GARNET_BLOCK);
-        addDrop(ModBlocks.RAW_PINK_GARNET_BLOCK);
-        addDrop(ModBlocks.MAGIC_BLOCK);
-
-        addDrop(ModBlocks.PINK_GARNET_ORE, oreDrops(ModBlocks.PINK_GARNET_ORE, ModItems.RAW_PINK_GARNET));
-        addDrop(ModBlocks.PINK_GARNET_DEEPSLATE_ORE, multipleOreDrops(ModBlocks.PINK_GARNET_DEEPSLATE_ORE, ModItems.RAW_PINK_GARNET, 3, 7));
+        // addDrop(ModBlocks.PINK_GARNET_BLOCK);
     }
 
     public LootTable.Builder multipleOreDrops(Block drop, Item item, float minDrops, float maxDrops) {

@@ -7,8 +7,8 @@ import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
-import net.mrconqueso.middleearthextras.structure.AStructureUtils;
-import net.mrconqueso.middleearthextras.structure.StructurePlacementState;
+import net.mrconqueso.middleearthextras.world.structure.protection.AStructureUtils;
+import net.mrconqueso.middleearthextras.world.structure.protection.StructurePlacementState;
 
 public class FreeAreaCommand {
 

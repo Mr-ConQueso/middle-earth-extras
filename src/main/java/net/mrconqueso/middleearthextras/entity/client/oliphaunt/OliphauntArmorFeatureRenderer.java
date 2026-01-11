@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.mrconqueso.middleearthextras.MiddleEarthExtras;
 import net.mrconqueso.middleearthextras.entity.custom.OliphauntEntity;
-import net.mrconqueso.middleearthextras.item.custom.OliphauntArmorItem;
+import net.mrconqueso.middleearthextras.item.items.OliphauntArmorItem;
 
 public class OliphauntArmorFeatureRenderer extends FeatureRenderer<OliphauntEntity, OliphauntModel<OliphauntEntity>> {
 

@@ -5,12 +5,20 @@ import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.EntityModelLayer;
 import net.minecraft.client.render.entity.model.SinglePartEntityModel;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.mrconqueso.middleearthextras.MiddleEarthExtras;
 import net.mrconqueso.middleearthextras.entity.custom.OliphauntEntity;
+import net.mrconqueso.middleearthextras.entity.util.IMovingSeatModel;
+import org.joml.Matrix4f;
+import org.joml.Vector4f;
 
-public class OliphauntModel<T extends OliphauntEntity> extends SinglePartEntityModel<T> {
+import static net.mrconqueso.middleearthextras.client.ModelTransformationsHelper.applyPartTransform;
+import static net.mrconqueso.middleearthextras.client.ModelTransformationsHelper.rotateVector;
+
+public class OliphauntModel<T extends OliphauntEntity> extends SinglePartEntityModel<T> implements IMovingSeatModel {
 
     public static final EntityModelLayer OLIPHAUNT = new EntityModelLayer(Identifier.of(MiddleEarthExtras.MOD_ID, "oliphaunt"), "main");
     public static final EntityModelLayer OLIPHAUNT_ARMOR = new EntityModelLayer(Identifier.of(MiddleEarthExtras.MOD_ID, "oliphaunt_armor"), "armor");
@@ -422,6 +430,38 @@ public class OliphauntModel<T extends OliphauntEntity> extends SinglePartEntityM
 
         this.animateMovement(OliphauntAnimations.WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
         this.updateAnimation(entity.idleAnimationState, OliphauntAnimations.IDLE, ageInTicks, 1f);
+    }
+
+    public Vec3d getSeatPosition(Entity entity, float partialTick) {
+        // 1. Calculate the Bone's Local Matrix (Rotation/Translation from model root)
+        Matrix4f boneMatrix = new Matrix4f();
+        boneMatrix.identity();
+
+        // Apply Root (Oliphaunt) Transform
+        applyPartTransform(boneMatrix, this.oliphaunt);
+
+        // Apply Howdah Transform
+        applyPartTransform(boneMatrix, this.howdah);
+
+        // 2. Transform the Local Point (0,0,0) by the Bone Matrix
+        // The bone pivot is the origin in its local space.
+        Vector4f position = new Vector4f(0, 0, 0, 1);
+        position.mul(boneMatrix);
+
+        // 3. Apply the Entity's World Rotation and Position
+        // Interpolate body yaw
+        float bodyYaw = MathHelper.lerp(partialTick, ((OliphauntEntity) entity).prevBodyYaw, ((OliphauntEntity) entity).bodyYaw);
+
+        // Convert the model-space offset to a Vec3d
+        Vec3d localOffset = new Vec3d(position.x, position.y, position.z);
+
+        // Rotate 'localOffset' by entity body yaw
+        localOffset = rotateVector(localOffset, bodyYaw);
+
+        // 4. Add Entity World Position (Interpolated)
+        Vec3d entityPos = entity.getLerpedPos(partialTick);
+
+        return entityPos.add(localOffset);
     }
 
     private void setHeadAngles(float headYaw, float headPitch) {

@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "me:mount_doom",
+      "required": true
+    },
+    {
+      "id": "me:mount_doom_pit",
+      "required": true
+    }
+  ]
+}

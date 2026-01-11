@@ -9,16 +9,10 @@
   ],
   "placement": {
     // The kind of placement to use. The other kind is ring based like strongholds use.
-    "type": "minecraft:random_spread",
-
-      // Make sure this is unique and does not match any other structure set's salt
-    "salt": 4648186,
-
-      // The average distance apart in chunks for spawn attempts
-    "spacing": 5,
-
-      // Minimum distance apart in chunks for spawn attempts
-      // MUST ALWAYS BE SMALLER THAN spacing ABOVE
-    "separation": 3
+    "type": "middle-earth-extras:afixed",
+    "target_x": 4500,
+    "target_z": 120,
+    "radius": 15,
+    "salt": 123456
   }
 }

@@ -7,7 +7,7 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.mrconqueso.middleearthextras.entity.ModEntities;
-import net.mrconqueso.middleearthextras.item.ModItems;
+import net.mrconqueso.middleearthextras.item.ModEggItems;
 import org.jetbrains.annotations.Nullable;
 
 public class BeorningHumanEntity extends AbstractBeorningEntity {
@@ -26,7 +26,7 @@ public class BeorningHumanEntity extends AbstractBeorningEntity {
 
     @Override
     public @Nullable ItemStack getPickBlockStack() {
-        return new ItemStack(ModItems.BEORNING_SPAWN_EGG);
+        return new ItemStack(ModEggItems.BEORNING_SPAWN_EGG);
     }
 
     @Override

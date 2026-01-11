@@ -46,7 +46,7 @@ public class OliphauntRenderer extends MobEntityRenderer<OliphauntEntity, Olipha
         if (livingEntity.isBaby()) {
             matrixStack.scale(0.3F, 0.3F, 0.3F);
         } else {
-            matrixStack.scale(1F, 1F, 1F);
+            matrixStack.scale(0.75F, 0.75F, 0.75F);
         }
 
         super.render(livingEntity, f, g, matrixStack, vertexConsumerProvider, i);

@@ -1,32 +1,65 @@
 {
-  "item.middle-earth-extras.pink_garnet": "Pink Garnet",
-  "item.middle-earth-extras.raw_pink_garnet": "Raw Pink Garnet",
-  "item.middle-earth-extras.chisel": "Chisel",
-  "item.middle-earth-extras.cauliflower": "Cauliflower",
-  "item.middle-earth-extras.starlight_ashes": "Starlight Ashes",
+  "---------------------- KEYBINDS ----------------------": "-------------------------",
+  "key.middle-earth-extras.k": "Testing Key",
 
+  "---------------------- EFFECTS ----------------------": "-------------------------",
+  "effect.middle-earth-extras.unseen_form": "Unseen Form",
+
+  "---------------------- BLOCKS ----------------------": "-------------------------",
+  "block.middle-earth-extras.damp_torch": "Torch",
+  "block.middle-earth-extras.wall_damp_torch": "Torch",
+
+
+  "---------------------- CREATIVE TABS ----------------------": "-------------------------",
+  "itemgroup.middle-earth-extras.rings": "Middle-extras Rings",
+  "itemgroup.middle-earth-extras.spawn_eggs": "Middle-extras Spawn Eggs",
+  "itemgroup.middle-earth-extras.misc": "Middle-extras Misc",
+
+
+  "---------------------- RINGS ----------------------": "-------------------------",
+  "item.middle-earth-extras.adunaphel": "Adûnaphel",
+  "item.middle-earth-extras.akhorahil": "Akhorahil",
+  "item.middle-earth-extras.hoarmurath": "Hoarmurath",
+  "item.middle-earth-extras.jiindur": "Ji Indur",
+  "item.middle-earth-extras.khamul": "Khamûl",
+  "item.middle-earth-extras.murazor": "Murazor",
+  "item.middle-earth-extras.ren": "Ren",
+  "item.middle-earth-extras.uvatha": "Uvatha",
+  "item.middle-earth-extras.last": "Last",
+  "item.middle-earth-extras.thror": "Thrór",
+  "item.middle-earth-extras.baraz": "Baraz",
+  "item.middle-earth-extras.burin": "Burin",
+  "item.middle-earth-extras.farin": "Farin",
+  "item.middle-earth-extras.khain": "Khain",
+  "item.middle-earth-extras.khibil": "Khibil",
+  "item.middle-earth-extras.thulin": "Thulin",
+  "item.middle-earth-extras.narya": "Narya",
+  "item.middle-earth-extras.nenya": "Nenya",
+  "item.middle-earth-extras.vilya": "Vilya",
+  "item.middle-earth-extras.the_one": "The One Ring",
+
+  "---------------------- WEAPONS ----------------------": "-------------------------",
   "item.middle-earth-extras.oaken_shield": "Oaken Shield",
+  "item.middle-earth-extras.haradrim_shield": "Haradrim Shield",
+
+  "---------------------- TOOLS ----------------------": "-------------------------",
+  "item.middle-earth-extras.magic_pipe": "Magical Pipe",
+
+  "---------------------- ARMOR ----------------------": "-------------------------",
+  "item.middle-earth-extras.oliphaunt_armor": "Oliphaunt Armor",
+
+  "item.middle-earth-extras.haradrim_helmet": "Haradrim Helmet",
+  "item.middle-earth-extras.haradrim_chestplate": "Haradrim Chestplate",
+  "item.middle-earth-extras.haradrim_leggings": "Haradrim Leggings",
+  "item.middle-earth-extras.haradrim_boots": "Haradrim Boots",
+
+  "item.middle-earth-extras.nazgul_helmet": "nazgul Helmet",
+  "item.middle-earth-extras.nazgul_chestplate": "nazgul Chestplate",
+  "item.middle-earth-extras.nazgul_leggings": "nazgul Leggings",
+  "item.middle-earth-extras.nazgul_boots": "nazgul Boots",
 
 
-  "block.middle-earth-extras.pink_garnet_block": "Block of Pink Garnet",
-  "block.middle-earth-extras.raw_pink_garnet_block": "Block of Raw Pink Garnet",
-
-  "block.middle-earth-extras.pink_garnet_ore": "Pink Garnet Ore",
-  "block.middle-earth-extras.pink_garnet_deepslate_ore": "Pink Garnet Deepslate Ore",
-
-  "block.middle-earth-extras.magic_block": "Magic Block",
-
-
-  "itemgroup.middle-earth-extras.pink_garnet_items": "Pink Garnet Items",
-  "itemgroup.middle-earth-extras.pink_garnet_blocks": "Pink Garnet Blocks",
-
-  "tooltip.middle-earth-extras.magic_block.tooltip": "This block is very, very §9MAGICAL§r",
-
-  "tooltip.middle-earth-extras.chisel.shift_down": "This item chisels blocks into Bricks!",
-  "tooltip.middle-earth-extras.chisel": "Press §eShift§r for more Information!",
-
-  "tooltip.middle-earth-extras.cauliflower.tooltip": "This is delicious!",
-
+  "---------------------- ENTITIES ----------------------": "-------------------------",
   "entity.middle-earth-extras.fell_beast": "Fell Beast",
   "item.middle-earth-extras.fell_beast_spawn_egg": "Fell Beast Spawn Egg",
   "entity.middle-earth-extras.oliphaunt": "Oliphaunt",
@@ -38,8 +71,25 @@
   "item.middle-earth-extras.beorning_spawn_egg": "Beorning Spawn Egg",
   "entity.middle-earth-extras.ent": "Ent",
   "item.middle-earth-extras.ent_spawn_egg": "Ent Spawn Egg",
+  "entity.middle-earth-extras.ring_wraith": "Nâzgul",
+  "item.middle-earth-extras.nazgul_spawn_egg": "Nâzgul Spawn Egg",
 
   "entity.middle-earth-extras.smoke_boat_projectile": "Smoke Boat",
 
-  "item.middle-earth-extras.oliphaunt_armor": "Oliphaunt Armor"
+
+  "---------------------- RACES & FACTIONS ----------------------": "-------------------------",
+  "race.me.beorning": "Beorning",
+  "faction.me.beornings": "Beornings",
+  "spawn.me.mirkwood.carrock": "The Carrock",
+
+  "race.me.ent": "Ent",
+
+  "faction.me.haradrim": "Haradrim",
+  "spawn.me.harondor.umbar": "Umbar",
+
+
+  "---------------------- MISC ----------------------": "-------------------------",
+  "config.jade.plugin_middle-earth-extras.petrified_troll_entity": "Petrified Troll",
+
+  "---------------------- EMI TAGS ----------------------": "-------------------------"
 }

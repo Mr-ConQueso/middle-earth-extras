@@ -3,11 +3,12 @@ package net.mrconqueso.middleearthextras.entity.custom;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.mrconqueso.middleearthextras.entity.ModEntities;
-import net.mrconqueso.middleearthextras.item.ModItems;
+import net.mrconqueso.middleearthextras.item.ModEggItems;
 import org.jetbrains.annotations.Nullable;
 
 public class BeorningBearEntity extends AbstractBeorningEntity {
@@ -27,7 +28,7 @@ public class BeorningBearEntity extends AbstractBeorningEntity {
 
     @Override
     public @Nullable ItemStack getPickBlockStack() {
-        return new ItemStack(ModItems.BEORNING_SPAWN_EGG);
+        return new ItemStack(ModEggItems.BEORNING_SPAWN_EGG);
     }
 
     @Override

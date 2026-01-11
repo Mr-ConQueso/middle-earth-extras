@@ -36,6 +36,15 @@ public class ModEntities {
                     .vehicleAttachment(-0.7F)
                     .maxTrackingRange(128).build());
 
+    public static final EntityType<RingWraithEntity> RING_WRAITH = Registry.register(Registries.ENTITY_TYPE,
+            Identifier.of(MiddleEarthExtras.MOD_ID, "ring_wraith"),
+            EntityType.Builder.create(RingWraithEntity::new, SpawnGroup.MONSTER)
+                    .dimensions(0.6F, 1.95F)
+                    .eyeHeight(1.74F)
+                    .passengerAttachments(2.0125F)
+                    .vehicleAttachment(-0.7F)
+                    .maxTrackingRange(128).build());
+
     public static final EntityType<BeorningHumanEntity> BEORNING_HUMAN = Registry.register(Registries.ENTITY_TYPE,
             Identifier.of(MiddleEarthExtras.MOD_ID, "beorning_human"),
             EntityType.Builder.create(BeorningHumanEntity::new, SpawnGroup.CREATURE)

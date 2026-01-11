@@ -23,6 +23,8 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
+import net.mrconqueso.middleearthextras.resources.ModFactions;
+import net.mrconqueso.middleearthextras.resources.ModRaces;
 import org.jetbrains.annotations.Nullable;
 
 public class AbstractBeorningEntity extends NpcEntity {
@@ -60,10 +62,10 @@ public class AbstractBeorningEntity extends NpcEntity {
 
     @Override
     protected Identifier getFactionId() {
-        return MiddleEarthFactions.DALE.getId();
+        return ModFactions.BEORNINGS.getId();
     }
     @Override
-    protected Identifier getRaceId() { return MiddleEarthRaces.HUMAN.getId(); }
+    protected Identifier getRaceId() { return ModRaces.BEORNING.getId(); }
     @Nullable
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {

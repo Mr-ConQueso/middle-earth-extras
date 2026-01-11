@@ -3,7 +3,6 @@ package net.mrconqueso.middleearthextras.entity.custom;
 import net.jukoz.me.entity.NpcEntity;
 import net.jukoz.me.entity.humans.bandit.BanditHumanEntity;
 import net.jukoz.me.entity.orcs.wild.WildGoblinEntity;
-import net.jukoz.me.resources.MiddleEarthFactions;
 import net.jukoz.me.resources.MiddleEarthRaces;
 import net.jukoz.me.resources.datas.npcs.data.NpcRank;
 import net.minecraft.entity.Entity;
@@ -25,6 +24,7 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+import net.mrconqueso.middleearthextras.resources.ModFactions;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -46,10 +46,17 @@ public class HaradrimEntity extends NpcEntity implements RangedAttackMob {
 
     @Override
     protected Identifier getFactionId() {
-        return MiddleEarthFactions.MORDOR.getId();
+        return ModFactions.HARADRIM.getId();
     }
+
     @Override
     protected Identifier getRaceId() { return MiddleEarthRaces.HUMAN.getId(); }
+
+    @Override
+    public NpcRank getRank() {
+        return NpcRank.LEADER;
+    }
+
     @Nullable
     @Override
     public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty, SpawnReason spawnReason, @Nullable EntityData entityData) {

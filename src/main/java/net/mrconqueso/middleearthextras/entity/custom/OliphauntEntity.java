@@ -1,5 +1,6 @@
 package net.mrconqueso.middleearthextras.entity.custom;
 
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.jukoz.me.entity.beasts.AbstractBeastEntity;
 import net.jukoz.me.entity.goals.BeastRevengeGoal;
@@ -50,14 +51,19 @@ import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import net.mrconqueso.middleearthextras.MiddleEarthExtras;
+import net.mrconqueso.middleearthextras.client.ScreenshakeManager;
 import net.mrconqueso.middleearthextras.entity.ModEntities;
-import net.mrconqueso.middleearthextras.item.custom.OliphauntArmorItem;
+import net.mrconqueso.middleearthextras.entity.client.oliphaunt.OliphauntRenderer;
+import net.mrconqueso.middleearthextras.item.items.OliphauntArmorItem;
+import net.mrconqueso.middleearthextras.network.ScreenshakePayload;
 import net.mrconqueso.middleearthextras.screen.custom.OliphauntScreenHandler;
 import nordmods.primitive_multipart_entities.common.entity.EntityPart;
 import nordmods.primitive_multipart_entities.common.entity.MultipartEntity;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.function.DoubleSupplier;
 import java.util.function.IntUnaryOperator;
@@ -87,6 +93,13 @@ public class OliphauntEntity extends AbstractBeastEntity implements InventoryCha
             DataTracker.registerData(OliphauntEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
     public static final TrackedData<Boolean> HAS_TIER_3_CHEST =
             DataTracker.registerData(OliphauntEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+
+    private final Map<Integer, String> events = new HashMap<>();
+    {
+        events.put(4, "stomp");
+    }
+    private float currentFrame;
+    private float previousFrame;
 
     protected SimpleInventory inventory;
 
@@ -172,6 +185,17 @@ public class OliphauntEntity extends AbstractBeastEntity implements InventoryCha
     @Override
     public void tick() {
         super.tick();
+
+        this.previousFrame = this.currentFrame;
+        this.currentFrame += this.speed;
+
+        // Check for events skipped over during this tick (e.g., if we went from frame 14.5 to 15.5)
+        for (Map.Entry<Integer, String> entry : events.entrySet()) {
+            int triggerFrame = entry.getKey();
+            if (previousFrame < triggerFrame && currentFrame >= triggerFrame) {
+                handleEvent(entry.getValue());
+            }
+        }
     }
 
     @Override
@@ -283,6 +307,24 @@ public class OliphauntEntity extends AbstractBeastEntity implements InventoryCha
         }
     }
 
+    @Override
+    public void updatePassengerPosition(Entity passenger, PositionUpdater positionUpdater) {
+        if (this.getWorld().isClient) {
+            var client = net.minecraft.client.MinecraftClient.getInstance();
+            var renderer = client.getEntityRenderDispatcher().getRenderer(this);
+
+            if (renderer instanceof OliphauntRenderer oliphauntRenderer) {
+                var model = oliphauntRenderer.getModel();
+                Vec3d seatPos = model.getSeatPosition(this, 1.0f);
+                positionUpdater.accept(passenger, seatPos.x, seatPos.y, seatPos.z);
+                return;
+            }
+        }
+        super.updatePassengerPosition(passenger, positionUpdater);
+        // Or if you know the Mûmakil is tall:
+        // positionUpdater.accept(passenger, this.getX(), this.getY() + 12.0, this.getZ());
+    }
+
     private void movePart(OliphantHowdah part, double dx, double dy, double dz) {
         Vec3d offset = new Vec3d(dx, dy, dz).rotateY(-this.bodyYaw * ((float)Math.PI / 180F));
         part.setRelativePos(offset.x, offset.y, offset.z);
@@ -299,6 +341,47 @@ public class OliphauntEntity extends AbstractBeastEntity implements InventoryCha
     @Override
     public EntityDimensions getBaseDimensions(EntityPose pose) {
         return this.isBaby() ? BABY_BASE_DIMENSIONS : super.getBaseDimensions(pose);
+    }
+
+    private void handleEvent(String eventId) {
+        if (eventId.equals("stomp")) {
+            // 1. Play Sound
+            this.playSound(SoundEvents.ENTITY_RAVAGER_STEP, 1.0f, 1.0f);
+
+            if (this.getWorld().isClient) {
+                // Client-side visual shake for the player riding or rendering nearby (optional, if packet latency is an issue)
+                var client = net.minecraft.client.MinecraftClient.getInstance();
+                if (client.player != null) {
+                    float dist = (float) this.distanceTo(client.player);
+                    if (dist < 32) {
+                        float intensity = MathHelper.lerp(dist / 32.0f, 1.0f, 0.0f);
+                        ScreenshakeManager.startShake(intensity, 10);
+                    }
+                }
+            } else {
+                // Server-side: Send shake packets to all nearby players
+                float maxRadius = 32.0f;
+                float maxIntensity = 1.0f;
+                int duration = 40;
+
+                // Get all players within the radius
+                List<ServerPlayerEntity> nearbyPlayers = this.getWorld().getEntitiesByClass(
+                        ServerPlayerEntity.class,
+                        this.getBoundingBox().expand(maxRadius),
+                        player -> this.distanceTo(player) <= maxRadius
+                );
+
+                for (ServerPlayerEntity player : nearbyPlayers) {
+                    float distance = this.distanceTo(player);
+                    // Linear falloff: 1.0 at 0 distance, 0.0 at maxRadius
+                    float intensity = MathHelper.lerp(distance / maxRadius, maxIntensity, 0.0f);
+
+                    if (intensity > 0) {
+                        ServerPlayNetworking.send(player, new ScreenshakePayload(intensity, duration));
+                    }
+                }
+            }
+        }
     }
 
     @Override

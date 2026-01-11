@@ -1,17 +1,65 @@
 {
   "targets": [
-    "swap"
+    "swap",
+    "temp",
+    "largeBlur"
   ],
   "passes": [
     {
-      "name": "wraith",
+      "name": "color_convolve",
       "intarget": "minecraft:main",
       "outtarget": "swap",
-      "program": "wraith"
+      "uniforms": [
+        {
+          "name": "Saturation",
+          "values": [ 0.0 ]
+        }
+      ]
+    },
+    {
+      "name": "blur",
+      "intarget": "swap",
+      "outtarget": "temp",
+      "uniforms": [
+        {
+          "name": "BlurDir",
+          "values": [ 1.0, 0.0 ]
+        },
+        {
+          "name": "Radius",
+          "values": [ 15.0 ]
+        }
+      ]
+    },
+    {
+      "name": "blur",
+      "intarget": "temp",
+      "outtarget": "largeBlur",
+      "uniforms": [
+        {
+          "name": "BlurDir",
+          "values": [ 0.0, 1.0 ]
+        },
+        {
+          "name": "Radius",
+          "values": [ 15.0 ]
+        }
+      ]
+    },
+    {
+      "name": "edge_blur",
+      "intarget": "swap",
+      "outtarget": "temp",
+      "auxtargets": [
+        {
+          "name": "BlurSampler",
+          "id": "largeBlur"
+        }
+      ]
     },
     {
       "name": "blit",
-      "intarget": "swap",
+      "intarget": "temp",
       "outtarget": "minecraft:main"
     }
   ]
