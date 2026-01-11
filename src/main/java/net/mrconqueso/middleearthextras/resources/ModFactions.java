@@ -86,7 +86,7 @@ public class ModFactions {
                         new BannerData.BannerPatternWithColor(BannerPatterns.SKULL, DyeColor.WHITE)
                 )),
                 new SpawnDataHandler(List.of(
-                        new SpawnData(Identifier.of(MiddleEarthExtras.MOD_ID, "harondor.umbar"),  new Vector2d(1573, 2465))
+                        new SpawnData(Identifier.of(MiddleEarthExtras.MOD_ID, "haradwaith.umbar"),  new Vector2d(1573, 2465))
                 )), List.of(), List.of()
         );
         //endregion

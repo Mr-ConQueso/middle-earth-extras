@@ -17,6 +17,8 @@
       "client.ItemRendererMixin",
       "client.PlayerEntityRendererMixin",
       "client.EntityRenderDispatcherMixin",
+      "client.SoundSystemMixin",
+      "client.SourceMixin",
       "client.lightmap.MixinEndEffects",
       "client.lightmap.MixinGameRenderer",
       "client.lightmap.MixinLightTexture",
