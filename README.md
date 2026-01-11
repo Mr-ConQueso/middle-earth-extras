@@ -1,65 +1,50 @@
-<div align="center">
-
-<img src="[https://cdn.modrinth.com/data/cached_images/878f02d73c5caa5506ec2486457b65d1eb199978.png](https://cdn.modrinth.com/data/cached_images/878f02d73c5caa5506ec2486457b65d1eb199978.png)" style="width: 50%; filter: hue-rotate(150deg);">
-
 ---
 
-<h2>Welcome to the <img src="./.idea/icon.png" width="18"> Middle Earth: Legends <img src="./.idea/icon.png" width="18"> Addon.</h2>
+<h2><img src="./.idea/icon.png" width="18"> Middle-earth: Extras Addon.</h2>
 <p>An unofficial expansion for the Middle-earth mod, bringing the most ambitious creatures and mechanics from Tolkien's lore into Minecraft.</p>
-<p>We aim to add the missing Titans, complex entity interactions, and immersive mechanics to complete the experience.</p>
+<p>We aim to add the missing beasts, new factions, complex mechanics and large structures and dungeons.</p>
 
 ---
-
-## Current state of the mod
-
-This addon is currently in **Alpha** for **Fabric 1.21.1**. It relies on the [Middle Earth Mod](https://github.com/Jukoz/middle-earth) to function.
-
-We are currently focusing on implementing complex "Titan" entities and lore-accurate AI behaviors that extend beyond standard Minecraft mechanics.
 
 ## Planned & Implemented Features
 
-> * <b>The Titans (Multi-Part Entities)</b>
->
->
->
->
-> <i>Massive entities with complex collision logic. Including the <b>Mûmakil</b> with functional siege towers that players and NPCs can ride freely, and <b>Dragons</b> with hoarding AI.</i>
-> * <b>Skin-Changers</b>
->
->
->
->
-> <i><b>Beornings</b> that utilize a custom "Rage" state machine to transform between Human and Bear forms, preserving health percentage and inventory during the swap.</i>
-> * <b>The Unseen World</b>
->
->
->
->
-> <i>A <b>Wraith World</b> mechanic utilizing custom post-processing shaders to alter vision, audio, and entity visibility when wearing Rings of Power.</i>
-> * <b>Forces of Nature</b>
->
->
->
->
-> <i><b>Ents</b> and <b>Huorns</b> with dormancy mechanics—camouflaging as block trees until threatened or provoked by loggers.</i>
-> * <b>Advanced Combat AI</b>
->
->
->
->
-> <i>New "Siege" AI for Haradrim Archers, ensuring they strafe and fight from atop moving beasts without losing footing or pathfinding off the edge.</i>
-> * <b>Expanded Roster</b>
->
->
->
->
-> <i>Including <b>Olog-hai</b> (Sun-resistant trolls), <b>Great Eagles</b>, <b>Shelob</b>, and <b>Balrogs</b> with dynamic physics-based whip attacks.</i>
->
->
+This addon is currently in **Alpha** for **Fabric 1.21.1**. It relies on the [Middle Earth Mod](https://github.com/Jukoz/middle-earth) to function.
 
----
+### ✨ Available Now: Current Features
+> - <b>The Rings of Power</b><br>
+    <i>Forge or find 25 rings each with unique abilities.</i>
+> - <b>World Mechanics</b><br>
+    <i>Heavy air in Mordor, healing mist of Lòrien and the doom of the Mirkwood forest</i>
+> - <b>New Entities</b><br>
+    <i>• Mûmakil: Massive Siege Beasts you can ride with Howdahs you can walk on.<br>
+    • Fell Beasts: Terrifying aerial mounts for the Nazgûl.<br>
+    • Haradrim: Fierce warriors from the South.</i>
+
+> [!IMPORTANT]
+> **Disclaimer:** This addon is still in development and may contain bugs, the artstyle is also not yet defined as I'm a terrible artist, we're currently looking for volunteers or commissions to help with art and development. Your contributions are greatly appreciated!
+
+### 🚧 Future Roadmap: Coming Soon
+We are actively developing the next phase of Middle-earth Extras. Here is what is coming in future updates:
+
+<b>Lore Structures & Dungeons</b><br>
+We have a custom static placement system that allows you to place lore structures anywhere in the world, with this system we are designing massive, procedurally generated dungeons to challenge your survival skills:  
+- Mines of Moria: A sprawling city of rooms and corridors that connect the east and west gates.  
+- Erebor (The Lonely Mountain): A possible bossfight against a giant dragon.  
+- Barad-dûr: A boss-rush up the Dark Tower, fighting the Mouth of Sauron and the Nâzgul on your way to the top.  
+
+<b>Artifacts & Tools</b><br>
+- Palantír: Link seeing stones to spy on distant locations (compatible with Voicechat).  
+- The Red Book of Westmarch: A physical journal system that will automatically record your kills, discoveries, and quests.
+
+<b>Dynamic Music</b><br>
+A dynamic music system that reacts to biomes and combat intensity (e.g., Drums of War in Mordor).  
+
+<b>Expanded Bestiary</b><br>
+Future updates will introduce Ents, the Watcher in the Water, Great Beasts, Black Númenóreans, and siege weapons like Grond and Dwarven Ballistae.
 
 ## Credits
+
+For a complete list of contributors and attributions, please refer to the [CREDITS.md](CREDITS.md) file.
 
 <details open>
 <summary><b>Click to Fold / Unfold</b></summary>
