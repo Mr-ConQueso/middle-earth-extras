@@ -8,6 +8,7 @@
   "---------------------- BLOCKS ----------------------": "-------------------------",
   "block.middle-earth-extras.damp_torch": "Torch",
   "block.middle-earth-extras.wall_damp_torch": "Torch",
+  "block.middle-earth-extras.palantir": "Palantir",
 
 
   "---------------------- CREATIVE TABS ----------------------": "-------------------------",
@@ -42,6 +43,10 @@
   "item.middle-earth-extras.oaken_shield": "Oaken Shield",
   "item.middle-earth-extras.haradrim_shield": "Haradrim Shield",
 
+  "---------------------- RESOURCES ----------------------": "-------------------------",
+  "item.middle-earth-extras.adamant_gem": "Adamant Gem",
+  "item.middle-earth-extras.black_adamant": "Black Adamant",
+
   "---------------------- TOOLS ----------------------": "-------------------------",
   "item.middle-earth-extras.magic_pipe": "Magical Pipe",
 
@@ -75,6 +80,7 @@
   "item.middle-earth-extras.nazgul_spawn_egg": "Nâzgul Spawn Egg",
 
   "entity.middle-earth-extras.smoke_boat_projectile": "Smoke Boat",
+  "entity.middle-earth-extras.palantir_view": "Palantir",
 
 
   "---------------------- RACES & FACTIONS ----------------------": "-------------------------",

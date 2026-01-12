@@ -12,6 +12,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexFormats;
+import net.minecraft.client.render.entity.EmptyEntityRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Identifier;
 import net.mrconqueso.middleearthextras.block.ModBlocks;
@@ -106,6 +107,7 @@ public class MiddleEarthExtrasClient implements ClientModInitializer {
     private static void initBlockRenderers() {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.DAMP_TORCH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WALL_DAMP_TORCH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PALANTIR, RenderLayer.getTranslucent());
     }
 
     private static void initNetworking() {
@@ -177,5 +179,7 @@ public class MiddleEarthExtrasClient implements ClientModInitializer {
 
         EntityModelLayerRegistry.registerModelLayer(SmokeBoatProjectileModel.SMOKE_BOAT, SmokeBoatProjectileModel::getTexturedModelData);
         EntityRendererRegistry.register(ModEntities.SMOKE_BOAT_PROJECTILE, SmokeBoatProjectileRenderer::new);
+
+        EntityRendererRegistry.register(ModEntities.PALANTIR_VIEW, EmptyEntityRenderer::new);
     }
 }
