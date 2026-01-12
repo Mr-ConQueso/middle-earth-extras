@@ -53,6 +53,17 @@ public class ModRingItems {
     public static final Item ZIMIL = registerItemGenerated("zimil",
             new RingItem(new Item.Settings().maxCount(1)));
 
+    public static final Item RING_OF_MANY_COLORS = registerItemGenerated("ring_of_many_colors",
+            new RingItem(new Item.Settings().maxCount(1)));
+    public static final Item RING_OF_IRON_SKIN = registerItemGenerated("ring_of_iron_skin",
+            new RingItem(new Item.Settings().maxCount(1)));
+    public static final Item RING_OF_STRIDER = registerItemGenerated("ring_of_strider",
+            new RingItem(new Item.Settings().maxCount(1)));
+    public static final Item RING_OF_WHISPERS = registerItemGenerated("ring_of_whispers",
+            new RingItem(new Item.Settings().maxCount(1)));
+    public static final Item RING_OF_MIMICRY = registerItemGenerated("ring_of_mimicry",
+            new RingItem(new Item.Settings().maxCount(1)));
+
     private static Item registerItemGenerated(String name, Item item) {
         ModItemGroups.RINGS_CONTENTS.add(item.getDefaultStack());
         // SimpleRingModel.items.add(item);

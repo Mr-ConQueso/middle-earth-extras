@@ -9,6 +9,13 @@ import java.util.List;
 public class SimpleRingModel {
     public static List<Item> items = new ArrayList<>() {
         {
+            // The Lesser
+            add(ModRingItems.RING_OF_MANY_COLORS);
+            add(ModRingItems.RING_OF_IRON_SKIN);
+            add(ModRingItems.RING_OF_STRIDER);
+            add(ModRingItems.RING_OF_WHISPERS);
+            add(ModRingItems.RING_OF_MIMICRY);
+
             // The Nine
             add(ModRingItems.ADUNAPHEL);
             add(ModRingItems.AKHORAHIL);
