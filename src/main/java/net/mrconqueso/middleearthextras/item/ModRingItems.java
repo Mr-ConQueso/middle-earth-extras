@@ -50,7 +50,7 @@ public class ModRingItems {
             new RingItem(new Item.Settings().maxCount(1)));
     public static final Item UVATHA = registerItemGenerated("uvatha",
             new RingItem(new Item.Settings().maxCount(1)));
-    public static final Item LAST = registerItemGenerated("last",
+    public static final Item ZIMIL = registerItemGenerated("zimil",
             new RingItem(new Item.Settings().maxCount(1)));
 
     private static Item registerItemGenerated(String name, Item item) {

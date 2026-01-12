@@ -18,7 +18,7 @@ public class SimpleRingModel {
             add(ModRingItems.MURAZOR);
             add(ModRingItems.REN);
             add(ModRingItems.UVATHA);
-            add(ModRingItems.LAST);
+            add(ModRingItems.ZIMIL);
 
             // The Seven
             add(ModRingItems.THROR);

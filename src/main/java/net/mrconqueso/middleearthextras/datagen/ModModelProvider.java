@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.jukoz.me.datageneration.content.CustomItemModels;
 import net.minecraft.data.client.*;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.state.property.Properties;
@@ -11,6 +12,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
 import net.mrconqueso.middleearthextras.MiddleEarthExtras;
 import net.mrconqueso.middleearthextras.block.ModBlocks;
+import net.mrconqueso.middleearthextras.datagen.content.models.SimpleBlockItemModel;
 import net.mrconqueso.middleearthextras.datagen.content.models.SimpleItemModel;
 import net.mrconqueso.middleearthextras.datagen.content.models.SimpleRingModel;
 import net.mrconqueso.middleearthextras.datagen.content.models.SimpleSpawnEggModel;
@@ -25,6 +27,16 @@ public class ModModelProvider extends FabricModelProvider {
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
 
         generateTorch(blockStateModelGenerator);
+
+        for (Item item : SimpleBlockItemModel.blockItems) {
+            if (Registries.ITEM.getId(item).equals(Registries.ITEM.getDefaultId())) {
+                MiddleEarthExtras.LOGGER.warn("Skipping model generation for unregistered block item: " + item);
+                continue;
+            }
+            if (item instanceof BlockItem blockItem) {
+                blockStateModelGenerator.registerParentedItemModel(blockItem, ModelIds.getBlockModelId(blockItem.getBlock()));
+            }
+        }
     }
 
     @Override

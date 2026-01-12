@@ -12,7 +12,7 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.mrconqueso.middleearthextras.utils.ModCollisionUtils;
+import net.mrconqueso.middleearthextras.util.ModCollisionUtils;
 
 public class SmokeBoatProjectileEntity extends ProjectileEntity {
     public final AnimationState idleAnimationState = new AnimationState();
