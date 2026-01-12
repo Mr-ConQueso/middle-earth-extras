@@ -22,7 +22,7 @@ public class ModBlocks {
             new WallDampTorchBlock(AbstractBlock.Settings.copy(Blocks.WALL_TORCH).luminance((state) -> 10).dropsLike(Blocks.TORCH)));
 
     public static final Block PALANTIR = registerBlockWithItem("palantir",
-            new PalantirBlock(AbstractBlock.Settings.copy(Blocks.OBSIDIAN).luminance((state) -> 5)));
+            new PalantirBlock(AbstractBlock.Settings.copy(Blocks.OBSIDIAN).luminance((state) -> 5).nonOpaque()));
 
 
     private static Block registerBlock(String name, Block block) {

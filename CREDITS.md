@@ -8,3 +8,8 @@ Oliphaunt: https://sketchfab.com/3d-models/elephant-9c461f34d2cf4514ad296b0bb5a5
 Fell Beast: https://sketchfab.com/3d-models/dragon-f02268e3f3754054b5ebce1064146420<br>
 Ent: https://sketchfab.com/3d-models/ent-by-arcanus-ec2c00a69ce047e78f9f6789cd860c60
 "Tiny Ship" (https://skfb.ly/pxHqW) by Tanjibul is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+### Code
+Structure protection system implemented thanks to AStages.<br>
+Mordor's darkness uses TrueDarkness.<br>
+The Palantiri were possible thanks to Alex's Caves.<br>
