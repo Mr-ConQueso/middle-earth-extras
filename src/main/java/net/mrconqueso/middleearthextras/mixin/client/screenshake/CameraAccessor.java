@@ -8,4 +8,7 @@ import org.spongepowered.asm.mixin.gen.Invoker;
 public interface CameraAccessor {
     @Invoker("setPos")
     void invokeSetPos(double x, double y, double z);
+
+    @Invoker("setRotation")
+    void invokeSetRotation(float yaw, float pitch);
 }

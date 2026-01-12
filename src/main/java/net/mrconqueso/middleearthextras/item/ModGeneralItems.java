@@ -10,6 +10,7 @@ import net.mrconqueso.middleearthextras.MiddleEarthExtras;
 import net.mrconqueso.middleearthextras.block.ModBlocks;
 import net.mrconqueso.middleearthextras.datagen.content.models.SimpleItemModel;
 import net.mrconqueso.middleearthextras.item.items.MagicPipeItem;
+import net.mrconqueso.middleearthextras.item.items.MagicStone;
 
 public class ModGeneralItems {
 
@@ -21,9 +22,11 @@ public class ModGeneralItems {
 
     public static final Item ADAMANT_GEM = registerItem("adamant_gem",
             new Item(new Item.Settings()));
-
     public static final Item BLACK_ADAMANT = registerItem("black_adamant",
             new Item(new Item.Settings()));
+
+    public static final Item MAGIC_STONE = registerItem("magic_stone",
+            new MagicStone(new Item.Settings()));
 
     private static Item register2DInventoryItem(String name, Item item) {
         ModItemGroups.MISC_CONTENTS.add(item.getDefaultStack());

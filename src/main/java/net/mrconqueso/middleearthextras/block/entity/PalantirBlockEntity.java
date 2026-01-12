@@ -2,6 +2,7 @@ package net.mrconqueso.middleearthextras.block.entity;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.registry.RegistryWrapper;
@@ -28,14 +29,34 @@ public class PalantirBlockEntity extends BlockEntity {
     public void link(GlobalPos pos) {
         this.linkedPalantirPos = pos;
         this.markDirty();
+        // Sync to client immediately upon linking
+        if (world instanceof ServerWorld) {
+            ((ServerWorld) world).getChunkManager().markForUpdate(getPos());
+        }
+    }
+    
+    public GlobalPos getLinkedPos() {
+        return this.linkedPalantirPos;
+    }
+
+    @Override
+    public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
+        return createNbt(registryLookup);
+    }
+
+    @Nullable
+    @Override
+    public BlockEntityUpdateS2CPacket toUpdatePacket() {
+        return BlockEntityUpdateS2CPacket.create(this);
     }
 
     public void usePalantir(ServerPlayerEntity player) {
         if (this.world == null) return;
-        
+
         ServerWorld targetLevel = (ServerWorld) this.world;
-        // Yarn 1.21: Vec3d.ofCenter(BlockPos) gets the center of the block
-        Vec3d targetPos = Vec3d.ofCenter(this.pos).add(0, 1.5, 0); 
+        Vec3d pivotPos = Vec3d.ofCenter(this.pos);
+        Vec3d initialPos = pivotPos.add(0, 1.5, 0);
+        boolean singleMode = true;
 
         // FEATURE A: If linked, look from the other stone
         if (linkedPalantirPos != null) {
@@ -44,7 +65,9 @@ public class PalantirBlockEntity extends BlockEntity {
             if (otherLevel != null) {
                 targetLevel = otherLevel;
                 // GlobalPos is now a Record: use .pos() instead of .getPos()
-                targetPos = Vec3d.ofCenter(linkedPalantirPos.pos()).add(0, 1.5, 0);
+                pivotPos = Vec3d.ofCenter(linkedPalantirPos.pos());
+                initialPos = pivotPos.add(0, 1.5, 0);
+                singleMode = false;
             }
         }
 
@@ -52,11 +75,13 @@ public class PalantirBlockEntity extends BlockEntity {
         PalantirViewEntity viewEntity = ModEntities.PALANTIR_VIEW.create(targetLevel);
         if (viewEntity != null) {
             // Yarn 1.21: setPosition takes (x, y, z)
-            viewEntity.setPosition(targetPos.x, targetPos.y, targetPos.z);
-            
+            viewEntity.setPosition(initialPos.x, initialPos.y, initialPos.z);
+
             // Yarn 1.21: setYaw / setPitch
             viewEntity.setYaw(player.getYaw());
             viewEntity.setPitch(player.getPitch());
+            
+            viewEntity.setSingleMode(singleMode, pivotPos);
 
             // Yarn 1.21: spawnEntity
             targetLevel.spawnEntity(viewEntity);

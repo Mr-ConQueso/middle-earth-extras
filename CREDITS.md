@@ -12,4 +12,4 @@ Ent: https://sketchfab.com/3d-models/ent-by-arcanus-ec2c00a69ce047e78f9f6789cd86
 ### Code
 Structure protection system implemented thanks to AStages.<br>
 Mordor's darkness uses TrueDarkness.<br>
-The Palantiri were possible thanks to Alex's Caves.<br>
+The Palantiri were possible thanks to Alex's Caves and [Illusions](https://github.com/ethanejohnsons/illusions/tree/main)<br>

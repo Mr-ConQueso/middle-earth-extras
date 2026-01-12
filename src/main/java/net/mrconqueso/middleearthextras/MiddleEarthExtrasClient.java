@@ -12,21 +12,23 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexFormats;
+import net.minecraft.client.render.block.entity.BlockEntityRendererFactories;
 import net.minecraft.client.render.entity.EmptyEntityRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Identifier;
+import net.mrconqueso.middleearthextras.block.ModBlockEntities;
 import net.mrconqueso.middleearthextras.block.ModBlocks;
 import net.mrconqueso.middleearthextras.client.ClientStructureProtection;
 import net.mrconqueso.middleearthextras.client.ScreenshakeManager;
 import net.mrconqueso.middleearthextras.client.WraithShaderHandler;
 import net.mrconqueso.middleearthextras.client.armor.renderer.*;
 import net.mrconqueso.middleearthextras.client.render.ModInternalShaders;
+import net.mrconqueso.middleearthextras.client.render.PalantirBlockEntityRenderer;
 import net.mrconqueso.middleearthextras.compat.Mods;
 import net.mrconqueso.middleearthextras.compat.accesories.Accesories;
 import net.mrconqueso.middleearthextras.compat.lambdynlights_api.LambDynLights;
 import net.mrconqueso.middleearthextras.compat.trinkets.Trinkets;
 import net.mrconqueso.middleearthextras.entity.ModEntities;
-import net.mrconqueso.middleearthextras.entity.misc.PalantirViewEntity;
 import net.mrconqueso.middleearthextras.entity.client.ModEntityModelLayers;
 import net.mrconqueso.middleearthextras.entity.client.beorning_bear.BeorningBearRenderer;
 import net.mrconqueso.middleearthextras.entity.client.beorning_human.BeorningHumanRenderer;
@@ -38,6 +40,7 @@ import net.mrconqueso.middleearthextras.entity.client.haradrim.HaradrimHumanRend
 import net.mrconqueso.middleearthextras.entity.client.oliphaunt.OliphauntModel;
 import net.mrconqueso.middleearthextras.entity.client.oliphaunt.OliphauntRenderer;
 import net.mrconqueso.middleearthextras.entity.client.ringwraith.RingWraithHumanRenderer;
+import net.mrconqueso.middleearthextras.entity.misc.PalantirViewEntity;
 import net.mrconqueso.middleearthextras.entity.projectile.smoke.SmokeBoatProjectileModel;
 import net.mrconqueso.middleearthextras.entity.projectile.smoke.SmokeBoatProjectileRenderer;
 import net.mrconqueso.middleearthextras.item.ModEquipmentItems;
@@ -108,6 +111,8 @@ public class MiddleEarthExtrasClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.DAMP_TORCH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.WALL_DAMP_TORCH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.PALANTIR, RenderLayer.getTranslucent());
+
+        // BlockEntityRendererFactories.register(ModBlockEntities.PALANTIR, PalantirBlockEntityRenderer::new);
     }
 
     private static void initNetworking() {

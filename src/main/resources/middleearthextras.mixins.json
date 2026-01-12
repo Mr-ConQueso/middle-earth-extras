@@ -20,6 +20,7 @@
       "client.SoundSystemMixin",
       "client.SourceMixin",
       "client.EntityRendererMixin",
+      "client.MouseMixin",
       "client.lightmap.MixinEndEffects",
       "client.lightmap.MixinGameRenderer",
       "client.lightmap.MixinLightTexture",
