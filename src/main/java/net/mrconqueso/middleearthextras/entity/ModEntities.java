@@ -79,11 +79,11 @@ public class ModEntities {
                     .maxTrackingRange(1).build());
 
     public static final EntityType<PalantirViewEntity> PALANTIR_VIEW = Registry.register(Registries.ENTITY_TYPE,
-            Identifier.of(MiddleEarthExtras.MOD_ID, "smoke_boat_projectile"),
+            Identifier.of(MiddleEarthExtras.MOD_ID, "palantir_view"),
             EntityType.Builder.create(PalantirViewEntity::new, SpawnGroup.MISC)
                     .dimensions(0.5F, 0.5F)
                     .eyeHeight(0.5F)
-                    .maxTrackingRange(1).build());
+                    .maxTrackingRange(256).build());
 
     public static void registerModEntities() {
         MiddleEarthExtras.LOGGER.info("Registering Mod Entities for " + MiddleEarthExtras.MOD_ID);

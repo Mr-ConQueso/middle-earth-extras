@@ -7,6 +7,7 @@ import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.network.packet.s2c.play.EntitySpawnS2CPacket;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ChunkTicketType;
 import net.minecraft.server.world.ServerWorld;
@@ -92,8 +93,19 @@ public class PalantirViewEntity extends Entity implements PossessesCamera {
 
                 loadChunksAround((ServerWorld) getWorld());
 
+                // Synced Mode Logic: Look from the other stone (fixed position, rotation control)
+                if (!this.isSingleMode()) {
+                    // Sync rotation with player so they can look around
+                    this.setYaw(serverPlayer.getYaw());
+                    this.setPitch(serverPlayer.getPitch());
+                    
+                    // Ensure position stays at the pivot (other palantir center + offset)
+                    // We set this initially, but force it here to prevent drift or weirdness
+                    Vec3d fixedPos = this.getPivotPos().add(0, 1.5, 0);
+                    this.setPosition(fixedPos);
+                }
                 // Single Mode Logic: Telescope behavior
-                if (this.isSingleMode()) {
+                else {
                     // Sync rotation with player
                     this.setYaw(serverPlayer.getYaw());
                     this.setPitch(serverPlayer.getPitch());
@@ -111,7 +123,7 @@ public class PalantirViewEntity extends Entity implements PossessesCamera {
                     this.stopPossession = true;
                 }
             }
-        } 
+        }
         // Client side logic is handled in MiddleEarthExtrasClient via TickEvents
     }
 
@@ -140,12 +152,20 @@ public class PalantirViewEntity extends Entity implements PossessesCamera {
 
     public void startPossession(ServerPlayerEntity player) {
         this.setUsingPlayerUUID(player.getUuid());
+
+        // Force the client to track this entity immediately.
+        player.networkHandler.sendPacket(new EntitySpawnS2CPacket(this, 0, this.getBlockPos()));
+
+        // Update the server-side camera entity as well
+        player.setCameraEntity(this);
+
         ServerPlayNetworking.send(player, new PalantirNetwork.PalantirSyncPayload(this.getId(), true));
     }
 
     @Override
     public void remove(RemovalReason reason) {
         if (!getWorld().isClient && getUsingPlayer() instanceof ServerPlayerEntity player) {
+            player.setCameraEntity(player);
             ServerPlayNetworking.send(player, new PalantirNetwork.PalantirSyncPayload(this.getId(), false));
         }
         super.remove(reason);

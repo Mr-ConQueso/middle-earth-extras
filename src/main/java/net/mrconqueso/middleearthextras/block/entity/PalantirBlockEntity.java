@@ -7,8 +7,11 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.server.world.ChunkTicketType;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.GlobalPos;
 import net.minecraft.util.math.Vec3d;
 import net.mrconqueso.middleearthextras.block.ModBlockEntities;
@@ -50,43 +53,46 @@ public class PalantirBlockEntity extends BlockEntity {
         return BlockEntityUpdateS2CPacket.create(this);
     }
 
-    public void usePalantir(ServerPlayerEntity player) {
-        if (this.world == null) return;
+    public boolean usePalantir(ServerPlayerEntity player) {
+        if (this.world == null) return false;
 
         ServerWorld targetLevel = (ServerWorld) this.world;
         Vec3d pivotPos = Vec3d.ofCenter(this.pos);
         Vec3d initialPos = pivotPos.add(0, 1.5, 0);
         boolean singleMode = true;
 
-        // FEATURE A: If linked, look from the other stone
         if (linkedPalantirPos != null) {
-            // GlobalPos is now a Record: use .dimension() instead of .getDimension()
             ServerWorld otherLevel = player.getServer().getWorld(linkedPalantirPos.dimension());
             if (otherLevel != null) {
                 targetLevel = otherLevel;
-                // GlobalPos is now a Record: use .pos() instead of .getPos()
                 pivotPos = Vec3d.ofCenter(linkedPalantirPos.pos());
                 initialPos = pivotPos.add(0, 1.5, 0);
                 singleMode = false;
+
+                // Force load the target chunk so the entity can be spawned
+                ChunkPos chunkPos = new ChunkPos(linkedPalantirPos.pos());
+                targetLevel.getChunkManager().addTicket(ChunkTicketType.PORTAL, chunkPos, 2, linkedPalantirPos.pos());
+                targetLevel.getChunk(chunkPos.x, chunkPos.z);
             }
         }
 
-        // Create the view entity
         PalantirViewEntity viewEntity = ModEntities.PALANTIR_VIEW.create(targetLevel);
         if (viewEntity != null) {
-            // Yarn 1.21: setPosition takes (x, y, z)
             viewEntity.setPosition(initialPos.x, initialPos.y, initialPos.z);
-
-            // Yarn 1.21: setYaw / setPitch
             viewEntity.setYaw(player.getYaw());
             viewEntity.setPitch(player.getPitch());
-            
+        
             viewEntity.setSingleMode(singleMode, pivotPos);
 
-            // Yarn 1.21: spawnEntity
-            targetLevel.spawnEntity(viewEntity);
-            viewEntity.startPossession(player);
+            if (targetLevel.spawnEntity(viewEntity)) {
+                viewEntity.startPossession(player);
+                return true;
+            } else {
+                viewEntity.discard();
+                player.sendMessage(Text.translatable("messages.middle-earth-extras.palantir.fail"), true);
+            }
         }
+        return false;
     }
 
     @Override

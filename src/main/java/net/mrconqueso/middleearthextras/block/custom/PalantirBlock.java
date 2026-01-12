@@ -50,7 +50,6 @@ public class PalantirBlock extends BlockWithEntity implements BlockEntityProvide
             BlockEntity be = world.getBlockEntity(pos);
             if (be instanceof PalantirBlockEntity palantir) {
 
-                // Logic for Magic Stone interaction
                 if (stack.getItem() instanceof MagicStone) {
                     GlobalPos currentPos = GlobalPos.create(world.getRegistryKey(), pos);
                     Optional<GlobalPos> storedPosOpt = MagicStone.getPosition(stack);
@@ -87,10 +86,12 @@ public class PalantirBlock extends BlockWithEntity implements BlockEntityProvide
                         return ItemActionResult.SUCCESS;
                     }
                 } 
-                // Logic for Possession (Empty hand or non-MagicStone item usage handling)
                 else {
-                    palantir.usePalantir(serverPlayer);
-                    return ItemActionResult.CONSUME;
+                    if (palantir.usePalantir(serverPlayer)) {
+                        return ItemActionResult.CONSUME;
+                    } else {
+                        return ItemActionResult.FAIL;
+                    }
                 }
             }
         }

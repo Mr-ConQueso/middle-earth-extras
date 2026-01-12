@@ -4,7 +4,8 @@
   "messages.middle-earth-extras.palantir.link_success": "Palantiri linked successfully!",
   "messages.middle-earth-extras.palantir.unreachable": "The other Palantir is gone or unreachable.",
   "messages.middle-earth-extras.palantir.position_saved": "Palantir position saved to Stone.",
-  "messages.middle-earth-extras.palantir.cleared": "Cleared stored Palantir position",
+  "messages.middle-earth-extras.palantir.cleared": "Cleared stored Palantir position.",
+  "messages.middle-earth-extras.palantir.fail": "Failed to see through the Palantir.",
 
 
   "---------------------- KEYBINDS ----------------------": "-------------------------",
