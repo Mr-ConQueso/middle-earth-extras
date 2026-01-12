@@ -1,4 +1,4 @@
-package net.mrconqueso.middleearthextras.utils;
+package net.mrconqueso.middleearthextras.util;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.Pair;

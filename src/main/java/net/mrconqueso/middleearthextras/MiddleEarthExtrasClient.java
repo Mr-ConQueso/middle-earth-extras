@@ -8,9 +8,11 @@ import net.fabricmc.fabric.api.client.rendering.v1.ArmorRenderer;
 import net.fabricmc.fabric.api.client.rendering.v1.CoreShaderRegistrationCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexFormats;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.Identifier;
 import net.mrconqueso.middleearthextras.block.ModBlocks;
 import net.mrconqueso.middleearthextras.client.ClientStructureProtection;
@@ -23,6 +25,7 @@ import net.mrconqueso.middleearthextras.compat.accesories.Accesories;
 import net.mrconqueso.middleearthextras.compat.lambdynlights_api.LambDynLights;
 import net.mrconqueso.middleearthextras.compat.trinkets.Trinkets;
 import net.mrconqueso.middleearthextras.entity.ModEntities;
+import net.mrconqueso.middleearthextras.entity.misc.PalantirViewEntity;
 import net.mrconqueso.middleearthextras.entity.client.ModEntityModelLayers;
 import net.mrconqueso.middleearthextras.entity.client.beorning_bear.BeorningBearRenderer;
 import net.mrconqueso.middleearthextras.entity.client.beorning_human.BeorningHumanRenderer;
@@ -39,6 +42,7 @@ import net.mrconqueso.middleearthextras.entity.projectile.smoke.SmokeBoatProject
 import net.mrconqueso.middleearthextras.item.ModEquipmentItems;
 import net.mrconqueso.middleearthextras.item.utils.ModModelPredicateProvider;
 import net.mrconqueso.middleearthextras.keybind.ModKeyBinds;
+import net.mrconqueso.middleearthextras.network.PalantirNetwork;
 import net.mrconqueso.middleearthextras.network.ScreenshakePayload;
 import net.mrconqueso.middleearthextras.network.StructureProtectionSyncPayload;
 import net.mrconqueso.middleearthextras.screen.ModScreenHandlers;
@@ -105,6 +109,18 @@ public class MiddleEarthExtrasClient implements ClientModInitializer {
     }
 
     private static void initNetworking() {
+        ClientPlayNetworking.registerGlobalReceiver(PalantirNetwork.PalantirSyncPayload.ID, (payload, context) -> {
+            context.client().execute(() -> {
+                Entity entity = context.player().getWorld().getEntityById(payload.entityId());
+                if (payload.active() && entity instanceof PalantirViewEntity viewEntity) {
+                    viewEntity.hasTakenFullControl = true;
+                    MinecraftClient.getInstance().setCameraEntity(viewEntity);
+                } else {
+                    MinecraftClient.getInstance().setCameraEntity(context.player());
+                }
+            });
+        });
+
         ClientPlayNetworking.registerGlobalReceiver(StructureProtectionSyncPayload.ID, (payload, context) -> {
             context.client().execute(() -> {
                 ClientStructureProtection.update(

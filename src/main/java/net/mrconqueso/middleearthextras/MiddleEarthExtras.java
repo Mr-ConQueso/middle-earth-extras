@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRe
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.Identifier;
+import net.mrconqueso.middleearthextras.block.ModBlockEntities;
 import net.mrconqueso.middleearthextras.block.ModBlocks;
 import net.mrconqueso.middleearthextras.command.FreeAreaCommand;
 import net.mrconqueso.middleearthextras.command.StructurePosCommand;
@@ -19,6 +20,7 @@ import net.mrconqueso.middleearthextras.effect.ModEffects;
 import net.mrconqueso.middleearthextras.entity.ModEntities;
 import net.mrconqueso.middleearthextras.entity.custom.*;
 import net.mrconqueso.middleearthextras.item.*;
+import net.mrconqueso.middleearthextras.network.PalantirNetwork;
 import net.mrconqueso.middleearthextras.network.ScreenshakePayload;
 import net.mrconqueso.middleearthextras.network.StructureProtectionSyncPayload;
 import net.mrconqueso.middleearthextras.resources.ModFactions;
@@ -50,6 +52,7 @@ public class MiddleEarthExtras implements ModInitializer {
         ModEquipmentItems.registerModItems();
 
 		ModBlocks.registerModBlocks();
+        ModBlockEntities.registerModBlockEntities();
         initModFuels();
 
         ModFactions.register();
@@ -83,6 +86,8 @@ public class MiddleEarthExtras implements ModInitializer {
     }
 
     private static void initNetworking() {
+        PalantirNetwork.register();
+
         PayloadTypeRegistry.playS2C().register(StructureProtectionSyncPayload.ID, StructureProtectionSyncPayload.CODEC);
         PayloadTypeRegistry.playS2C().register(ScreenshakePayload.ID, ScreenshakePayload.CODEC);
         PayloadTypeRegistry.playC2S().register(ScreenshakePayload.ID, ScreenshakePayload.CODEC);
