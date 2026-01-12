@@ -60,7 +60,7 @@ public class PalantirBlock extends BlockWithEntity implements BlockEntityProvide
 
                         // Don't link to itself
                         if (storedPos.equals(currentPos)) {
-                            player.sendMessage(Text.literal("Cannot link Palantir to itself."), true);
+                            player.sendMessage(Text.translatable("messages.middle-earth-extras.palantir.to_self"), true);
                             return ItemActionResult.FAIL;
                         }
 
@@ -74,16 +74,16 @@ public class PalantirBlock extends BlockWithEntity implements BlockEntityProvide
                                 palantir.link(storedPos);
                                 otherPalantir.link(currentPos);
                                 
-                                player.sendMessage(Text.literal("Palantirs linked successfully!"), true);
+                                player.sendMessage(Text.translatable("messages.middle-earth-extras.palantir.link_success"), true);
                                 return ItemActionResult.SUCCESS;
                             } else {
-                                player.sendMessage(Text.literal("The other Palantir is gone or unreachable."), true);
+                                player.sendMessage(Text.translatable("messages.middle-earth-extras.palantir.unreachable"), true);
                             }
                         }
                     } else {
                         // Save current position to stone
                         MagicStone.setPosition(stack, currentPos);
-                        player.sendMessage(Text.literal("Palantir position saved to Stone."), true);
+                        player.sendMessage(Text.translatable("messages.middle-earth-extras.palantir.position_saved"), true);
                         return ItemActionResult.SUCCESS;
                     }
                 } 

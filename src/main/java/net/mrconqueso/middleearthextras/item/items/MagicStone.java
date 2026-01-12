@@ -30,7 +30,7 @@ public class MagicStone extends Item {
             Optional<GlobalPos> pos = getPosition(stack);
             if (pos.isPresent()) {
                 clearPosition(stack);
-                user.sendMessage(Text.literal("Cleared stored Palantir position"), true);
+                user.sendMessage(Text.translatable("messages.middle-earth-extras.palantir.cleared"), true);
                 return TypedActionResult.success(stack);
             }
         }
@@ -42,9 +42,9 @@ public class MagicStone extends Item {
         Optional<GlobalPos> posOpt = getPosition(stack);
         if (posOpt.isPresent()) {
             GlobalPos pos = posOpt.get();
-            tooltip.add(Text.literal("Linked to: " + pos.dimension().getValue().toString() + " [" + pos.pos().toShortString() + "]").formatted(Formatting.GRAY));
+            tooltip.add(Text.literal(Text.translatable("item.middle-earth-extras.magic_stone.tooltip.linked") + pos.dimension().getValue().toString() + " [" + pos.pos().toShortString() + "]").formatted(Formatting.GRAY));
         } else {
-            tooltip.add(Text.literal("No position stored").formatted(Formatting.GRAY));
+            tooltip.add(Text.translatable("item.middle-earth-extras.magic_stone.tooltip.nopos").formatted(Formatting.GRAY));
         }
         super.appendTooltip(stack, context, tooltip, type);
     }
